@@ -5,15 +5,17 @@ import java.util.*;
 public class Wednesday {
 
     public static void main(String[] args) {
-        int arr[] = {1, 1, 0, 0, 0, 1, 1, 1, 1};
-        int n = arr.length;
-        System.out.println(findTheNumberOfWaysInWhichArrayCanBeDividedInContinuousSubArrayWithEqualSum(n, arr));
+//        int arr[] = {1, 1, 0, 0, 0, 1, 1, 1, 1};
+//        int n = arr.length;
+//        System.out.println(findTheNumberOfWaysInWhichArrayCanBeDividedInContinuousSubArrayWithEqualSum(n, arr));
+//
+//        String[] arr1 = new String[]{"2.671613", "1.239175", "2.575260", "0.021242", "1.894100", "0.148016", "0.341571"};
+//        System.out.println(findingIfTheTripletSumIsInTheGivenRange(arr1));
+//
+//        int arr2[] = {4, -9, 8, 5, -1, 7, 5, 3};
+//        System.out.println(findingIfThereExistsANobelNumberInArrayWhereNobelNumberIsIfNumberIsEqualToNumberOfItemsGreaterThanThatNumberInArray(arr2));
 
-        String[] arr1 = new String[]{"2.671613", "1.239175", "2.575260", "0.021242", "1.894100", "0.148016", "0.341571"};
-        System.out.println(findingIfTheTripletSumIsInTheGivenRange(arr1));
-
-        int arr2[] = {4, -9, 8, 5, -1, 7, 5, 3};
-        System.out.println(findingIfThereExistsANobelNumberInArrayWhereNobelNumberIsIfNumberIsEqualToNumberOfItemsGreaterThanThatNumberInArray(arr2));
+        System.out.println(sortingTheArrayLikeWave(Arrays.asList(1,2,3,4,5,6,7,8,9,10)));
     }
 
     /*
@@ -295,7 +297,22 @@ public class Wednesday {
     =======================================================================================================
     Solution
 
+    In Starting it seems like impossible.
+    But thinking a little bit then it starts to make sense.
+
+    First Sor the Array.
+    And then Swap the two Adjacent Elements in the Array
+
     */
 
-
+    public static List<Integer> sortingTheArrayLikeWave(List<Integer> A) {
+        Collections.sort(A);
+        for(int i = 0; i <= A.size()-2; i+=2){
+            int previous = A.get(i);
+            int next = A.get(i+1);
+            A.set(i,next);
+            A.set(i+1,previous);
+        }
+        return A;
+    }
 }
