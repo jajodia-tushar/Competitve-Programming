@@ -84,8 +84,8 @@ class GFG {
    2. sum of (array[j]....array[n]) = totalSum/3 and there is some gap in between i and j.
    3. then we can be sure that the sum of (arr[i+1].....arr[j-1]) = totalSum/3                            -------------> Logical Right ?
 
-   See calculating the sum of the middle part is difficult and it is easy to calculate the sum of items in the
-   edges.
+    See calculating the sum of the middle part is difficult and it is easy to calculate the sum of items in the
+    edges.
 
     Second trick is this.
 
@@ -94,9 +94,9 @@ class GFG {
     array is equal to totalSum/3 and for other scenarios we assign 0.
 
     In the above trick we are not doing any fancy things, we are just assigning 1 at the index which will form a  the sub arrays
-    whose sum is equal to totalSum/3.
+    whose sum is equal to totalSum/3 but we just start from the end.
 
-    no to find the number of sub-array whose sum will be equal to totalSum/3 we find the cumulative sum of from end of the array.
+    now to find the number of sub-array whose sum will be equal to totalSum/3 we find the cumulative sum of from end of the array.
     This will tell us nothing just the number of subArray that can have the sum of totalSum/3 from a particular array.
 
     Eg.
@@ -107,6 +107,8 @@ class GFG {
     After Cumulative sum we have tempArray = {2,2,2,2,1}
     What this array says is that if we start from the end of the array we can have have tempArray[i] number of sub arrays
     at ith positions.
+    or.
+    At any index i we can easily know how many continuous sub array we can form from the remaining elements.
 
     Well this is very important.
     If we start counting the sum from the starting and once the sum hits totalSum/3 let's say at i then
