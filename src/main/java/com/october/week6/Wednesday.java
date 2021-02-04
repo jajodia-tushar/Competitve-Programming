@@ -97,7 +97,7 @@ fibonacci(10) ---> fibonacci(9) + fibonacci(8)
                 fibonacci(8) + 7   7 + 6
                7 + 6  6 + 5      6 + 5 + 5 + 4
 and so on.
-first to calculate the fibonacci of 10 you will need fibonacci of 9 and to calculate that you will need fibonacci of 8 and 7
+first to calculate the fibonacci of 10 you will need fibonacci of 9 and 8 and to calculate that you will need fibonacci of 8 and 7
 and so on till 1.
 Here fibonacci of same number are required multiple times.
 so instead of calculating over and over again what we can do is store the calculated value in array and then retrieve it in

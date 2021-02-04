@@ -5,15 +5,15 @@ import java.util.*;
 class GFG {
 
     public static void main(String[] args) {
-//        int arr[] = {1,1,0,0,0,1,1,1,1};
-//        int n = arr.length;
-//        System.out.println(solve(n, arr));
+        int arr[] = {0, 1, -1, 0};
+        int n = arr.length;
+        System.out.println(solve(n, arr));
 
 //        String[] arr = new String[]{"2.671613", "1.239175", "2.575260", "0.021242", "1.894100", "0.148016", "0.341571" };
 //        System.out.println(solve(arr));
-
-        int arr[] = { 4, -9, 8, 5, -1, 7, 5, 3};
-        System.out.println(solve(arr));
+//
+//        int arr[] = { 4, -9, 8, 5, -1, 7, 5, 3};
+//        System.out.println(solve(arr));
     }
 
     public static int solve(int A, int[] B) {
@@ -43,10 +43,10 @@ class GFG {
             tempSum = 0;
             int count = 0;
 
-            for (int i = 0; i < A; i++) {
+            for (int i = 0; i < A - 2; i++) {
                 tempSum += B[i];
                 if (tempSum == requiredSum) {
-                    count += suffixArray[i + 1];
+                    count += suffixArray[i + 2];
                 }
             }
 
