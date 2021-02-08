@@ -124,6 +124,8 @@ public class Wednesday {
 
     /*
     ===============================================================================================================
+    Triplets with Sum between given range
+
     This is very Interesting Question.
     Given an array of real numbers greater than zero in form of strings.
     Find if there exists a triplet (a,b,c) such that 1 < a+b+c < 2 .
@@ -242,6 +244,8 @@ public class Wednesday {
             return 1;
 
         return 0;
+
+
     }
 
     public static boolean isInA(double num) {
