@@ -9,13 +9,13 @@ public class Wednesday {
 //        int n = arr.length;
 //        System.out.println(findTheNumberOfWaysInWhichArrayCanBeDividedInContinuousSubArrayWithEqualSum(n, arr));
 //
-//        String[] arr1 = new String[]{"2.671613", "1.239175", "2.575260", "0.021242", "1.894100", "0.148016", "0.341571"};
-//        System.out.println(findingIfTheTripletSumIsInTheGivenRange(arr1));
+        String[] arr1 = new String[]{"0.01", "0.01", "0.5", "0.4", "0.6", "0.6", "0.9"};
+        System.out.println(findingIfTheTripletSumIsInTheGivenRange(arr1));
 //
 //        int arr2[] = {4, -9, 8, 5, -1, 7, 5, 3};
 //        System.out.println(findingIfThereExistsANobelNumberInArrayWhereNobelNumberIsIfNumberIsEqualToNumberOfItemsGreaterThanThatNumberInArray(arr2));
 
-        System.out.println(sortingTheArrayLikeWave(Arrays.asList(1,2,3,4,5,6,7,8,9,10)));
+//        System.out.println(sortingTheArrayLikeWave(Arrays.asList(1,2,3,4,5,6,7,8,9,10)));
     }
 
     /*
