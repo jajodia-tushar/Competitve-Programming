@@ -6,7 +6,7 @@ public class MedianArray {
 
     public static void main(String[] args) {
         MedianArray obj = new MedianArray();
-        int[][] arr = {{1, 1, 1, 3, 3}};
+        int[][] arr = {{1,1,1,1,1,1,1,1,1,2,10,10,10,10,10,10,10,10,10,10}};
         System.out.println(obj.findMedian(arr));
     }
 

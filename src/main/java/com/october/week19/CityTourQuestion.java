@@ -59,6 +59,6 @@ public class CityTourQuestion {
 
     public static void main(String[] args) {
         CityTourQuestion obj = new CityTourQuestion();
-        System.out.println(obj.solve(48, new int[]{5, 12, 48, 34, 21, 29, 25, 11, 37, 26, 14, 15, 35, 41, 24, 39, 10, 17, 23, 16, 8, 44, 13, 31}));
+        System.out.println(obj.solve(3, new int[]{1}));
     }
 }
