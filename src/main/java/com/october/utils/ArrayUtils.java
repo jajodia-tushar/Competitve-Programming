@@ -1,5 +1,8 @@
 package com.october.utils;
 
+import java.util.Collections;
+import java.util.List;
+
 public class ArrayUtils {
     public static void printArray(int[] arr) {
         System.out.print("[ ");
@@ -18,4 +21,15 @@ public class ArrayUtils {
             System.out.println("] ");
         }
     }
+
+    public static<T> void printArray(T[] t){
+        for( T x : t){
+            System.out.println(x);
+        }
+    }
+
+    public static<T extends List> void printCollection(T t){
+        t.forEach(System.out::println);
+    }
+
 }
