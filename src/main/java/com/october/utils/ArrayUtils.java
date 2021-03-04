@@ -1,5 +1,6 @@
 package com.october.utils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,5 +32,18 @@ public class ArrayUtils {
     public static<T extends List> void printCollection(T t){
         t.forEach(System.out::println);
     }
+
+    public static ArrayList<Integer> asArrayList(Integer ...args){
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int item : args){
+            list.add(item);
+        }
+        return list;
+    }
+
+    public static int[] asArrays(int ...args){
+        return args;
+    }
+
 
 }
