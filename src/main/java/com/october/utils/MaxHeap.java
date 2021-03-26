@@ -68,6 +68,13 @@ public class MaxHeap implements Heap {
             largest = leftChild;
         }
 
+        // Look Properly the Following condition is not similar to above condition.
+        // We are not giving priority to Right Node and leaving the Left Node untouched.
+        // The idea is if left element is already greater than largest which is the current index.
+        // we are storing the position in the largest.
+        // Now we are comparing the right node value not with the index rather we are comparing it with
+        // left value as largest now contains position of the left Node.
+        // So basically this will make you choose the largest in the three node.
         if(rightChild < this.currentCapacity && this.heapArray[rightChild] > this.heapArray[largest]){
             largest = rightChild;
         }
