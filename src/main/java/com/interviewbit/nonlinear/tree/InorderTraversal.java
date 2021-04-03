@@ -1,9 +1,7 @@
 package com.interviewbit.nonlinear.tree;
 
 import com.interviewbit.nonlinear.util.TreeNode;
-import com.sun.source.tree.Tree;
 
-import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 
 public class InorderTraversal {
@@ -41,7 +39,7 @@ public class InorderTraversal {
     public static void traverse(TreeNode node, ArrayList<Integer> result) {
         if (node == null) return;
         traverse(node.left, result);
-        result.add(node.value);
+        result.add(node.val);
         traverse(node.right, result);
     }
 
@@ -51,7 +49,7 @@ public class InorderTraversal {
 
         while( current != null){
             if(current.left == null){
-                System.out.print(current.value+" ");
+                System.out.print(current.val +" ");
                 current = current.right;
             }
             else{
@@ -62,7 +60,7 @@ public class InorderTraversal {
                 }
                 else{
                     predecessor.right = null;
-                    System.out.print(current.value+" ");
+                    System.out.print(current.val +" ");
                     current = current.right;
                 }
             }

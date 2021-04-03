@@ -25,7 +25,7 @@ public class PostOrderTraversal {
         if (node == null) return;
         traverse(node.left, result);
         traverse(node.right, result);
-        result.add(node.value);
+        result.add(node.val);
     }
 }
 

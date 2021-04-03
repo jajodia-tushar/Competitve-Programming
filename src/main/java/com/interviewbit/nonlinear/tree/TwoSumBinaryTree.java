@@ -49,13 +49,13 @@ public class TwoSumBinaryTree {
 
         while(true){
 
-            int sum = left.value + right.value;
+            int sum = left.val + right.val;
 
-            if( (left == right) || left.value > right.value )
+            if( (left == right) || left.val > right.val)
                 return 0;
 
             if( sum == B){
-                System.out.println(left.value+" "+right.value);
+                System.out.println(left.val +" "+right.val);
                 return 1;
             }
             else if( sum < B){

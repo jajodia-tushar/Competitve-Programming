@@ -45,8 +45,8 @@ public class RecoverBinarySearchTree {
 
         modifiedInorderTraversal(A);
         int[] result = new int[2];
-        result[0] = Math.min(first.value,second.value);
-        result[1] = Math.max(first.value,second.value);
+        result[0] = Math.min(first.val,second.val);
+        result[1] = Math.max(first.val,second.val);
         return result;
 
     }
@@ -57,7 +57,7 @@ public class RecoverBinarySearchTree {
         else{
             modifiedInorderTraversal(node.left);
             if (pre != null) {
-                if (pre.value > node.value) {
+                if (pre.val > node.val) {
                     if (first == null) {
                         first = pre;
                     }
@@ -78,8 +78,8 @@ public class RecoverBinarySearchTree {
 
         while( current != null){
             if(current.left == null){
-                System.out.print(current.value+" ");
-                if(current.right != null && current.value > current.right.value){
+                System.out.print(current.val +" ");
+                if(current.right != null && current.val > current.right.val){
                     if(this.first == null){
                         this.first = current;
                     }
@@ -91,7 +91,7 @@ public class RecoverBinarySearchTree {
                 TreeNode predecessor = findPredecessor(current);
                 if( predecessor.right == null){
                     predecessor.right = current;
-                    if(current.value < current.left.value) {
+                    if(current.val < current.left.val) {
                         if (this.first == null) {
                             this.first = current.left;
                         }
@@ -101,8 +101,8 @@ public class RecoverBinarySearchTree {
                 }
                 else{
                     predecessor.right = null;
-                    System.out.print(current.value+" ");
-                    if(current.right != null && current.value > current.right.value){
+                    System.out.print(current.val +" ");
+                    if(current.right != null && current.val > current.right.val){
                         if(this.first == null){
                             this.first = current;
                         }

@@ -38,7 +38,7 @@ public class KthSmallestElementInTree {
 
         findKthSmallestNumber(node.left,b);
         k++;
-        if( k == b) res = node.value;
+        if( k == b) res = node.val;
         findKthSmallestNumber(node.right,b);
     }
 

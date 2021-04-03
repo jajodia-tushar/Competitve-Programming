@@ -8,10 +8,10 @@ public class TreeNode {
     public static int VERTICAL_SPACE = 10;
     public TreeNode left;
     public TreeNode right;
-    public int value;
+    public int val;
 
-    public TreeNode(int value){
-        this.value = value;
+    public TreeNode(int val){
+        this.val = val;
         this.left = null;
         this.right = null;
     }
@@ -19,13 +19,13 @@ public class TreeNode {
     public static void inOrderPrint(TreeNode node){
         if( node == null) return;
         inOrderPrint(node.left);
-        System.out.print(node.value+"  ");
+        System.out.print(node.val +"  ");
         inOrderPrint(node.right);
     }
 
     public static void preOrderPrint(TreeNode node){
         if( node == null) return;
-        System.out.print(node.value+"  ");
+        System.out.print(node.val +"  ");
         preOrderPrint(node.left);
         preOrderPrint(node.right);
     }
@@ -34,19 +34,19 @@ public class TreeNode {
         if( node == null) return;
         postOrderPrint(node.left);
         postOrderPrint(node.right);
-        System.out.print(node.value+"  ");
+        System.out.print(node.val +"  ");
     }
 
     public static void getInOrder(TreeNode node,ArrayList<Integer> result){
         if( node == null) return;
         getInOrder(node.left,result);
-        result.add(node.value);
+        result.add(node.val);
         getInOrder(node.right,result);
     }
 
     public static void getPreOrder(TreeNode node,ArrayList<Integer> result){
         if( node == null) return;
-        result.add(node.value);
+        result.add(node.val);
         getPreOrder(node.left,result);
         getPreOrder(node.right,result);
     }
@@ -55,7 +55,7 @@ public class TreeNode {
         if( node == null) return;
         getPostOrder(node.left,result);
         getPostOrder(node.right,result);
-        result.add(node.value);
+        result.add(node.val);
     }
 
     public static TreeNode createTreeFromArray(int ...arr){
@@ -92,7 +92,7 @@ public class TreeNode {
         System.out.print("\n");
         for (int i = VERTICAL_SPACE; i < space; i++)
             System.out.print(" ");
-        System.out.print(root.value + "\n");
+        System.out.print(root.val + "\n");
         printTree(root.left, space);
     }
 

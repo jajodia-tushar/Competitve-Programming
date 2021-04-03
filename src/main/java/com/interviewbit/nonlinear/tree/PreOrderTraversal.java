@@ -23,7 +23,7 @@ public class PreOrderTraversal {
 
     public static void traverse(TreeNode node, ArrayList<Integer> result){
         if( node == null) return;
-        result.add(node.value);
+        result.add(node.val);
         traverse(node.left,result);
         traverse(node.right,result);
     }

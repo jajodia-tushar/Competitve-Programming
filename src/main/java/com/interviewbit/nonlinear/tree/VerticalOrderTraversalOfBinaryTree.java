@@ -4,7 +4,6 @@ import com.interviewbit.nonlinear.util.TreeNode;
 import com.interviewbit.utils.ArrayUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class VerticalOrderTraversalOfBinaryTree {
 
@@ -48,7 +47,7 @@ public class VerticalOrderTraversalOfBinaryTree {
         traverse(A.left, diversion - 1, elevation + 1);
 
         Pair newPair = new Pair();
-        newPair.value = A.value;
+        newPair.value = A.val;
         newPair.elevation = elevation;
 
         if (maps.containsKey(diversion)) {
