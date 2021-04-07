@@ -21,65 +21,26 @@ public class BalancedBinaryTree {
         root.right.right.right.right.right = new TreeNode(12);
         root.right.left = new TreeNode(13);
 
-        long oStart = System.currentTimeMillis();
         System.out.println(obj.isBalanced(root));
-        System.out.println("UnOptimized call finished in " + (System.currentTimeMillis() - oStart));
-        System.out.println();
-        long iStart = System.currentTimeMillis();
-        System.out.println(obj.isBalancedOptimized(root).isBalanced);
-        System.out.println("Optimized call finished in " + (System.currentTimeMillis() - iStart));
 
     }
 
-    public boolean isBalanced(TreeNode node){
-
-        if( node == null) return true;
-        boolean isLeftSubTreeBalanced = isBalanced(node.left);
-        boolean isRightSubTreeBalanced = isBalanced(node.right);
-        int left = findHeight(node.left);
-        int right = findHeight(node.right);
-        int diff = left - right;
-
-        return diff <= 1
-                && isLeftSubTreeBalanced && isRightSubTreeBalanced;
-    }
-
-    public BalancedPair isBalancedOptimized(TreeNode node){
-
-        if(node == null){
-            BalancedPair balancedPair  = new BalancedPair();
-            balancedPair.height = -1;
-            balancedPair.isBalanced = true;
-            return balancedPair;
-        }
-
-        BalancedPair leftBalancedPair = isBalancedOptimized(node.left);
-        BalancedPair rightBalancedPair = isBalancedOptimized(node.right);
-        boolean isLeftBalanced = leftBalancedPair.isBalanced;
-        boolean isRightBalanced = rightBalancedPair.isBalanced;
-        int leftHeight = leftBalancedPair.height;
-        int rightHeight = rightBalancedPair.height;
-
-        BalancedPair currentBalancedPair = new BalancedPair();
-        currentBalancedPair.height = Math.max(leftHeight, rightHeight) + 1;
-        currentBalancedPair.isBalanced = isLeftBalanced && isRightBalanced && Math.abs(leftHeight - rightHeight) <= 1;
-
-        return currentBalancedPair;
+    public int isBalanced(TreeNode node){
+        return isTreeBalanced(node) != -1 ? 1 : -1;
     }
 
 
+    public int isTreeBalanced(TreeNode node){
 
-    public int findHeight(TreeNode node){
+        if( node == null) return 0;
+        int left = isTreeBalanced(node.left);
+        int right = isTreeBalanced(node.right);
 
-        if(node == null) return -1;
-        int left =  findHeight(node.left);
-        int right = findHeight(node.right);
+        if( left == -1 || right == -1)
+            return -1;
+        if( Math.abs(left - right) > 1)
+            return -1;
         return Math.max(left,right) + 1;
     }
 }
 
-
-class BalancedPair{
-    public int height;
-    public boolean isBalanced;
-}

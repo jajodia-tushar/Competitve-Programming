@@ -96,6 +96,20 @@ public class TreeNode {
         printTree(root.left, space);
     }
 
+    public static void printBinaryTree(TreeNode root, int level){
+        if(root==null)
+            return;
+        printBinaryTree(root.right, level+1);
+        if(level!=0){
+            for(int i=0;i<level-1;i++)
+                System.out.print("|\t");
+            System.out.println("|-------"+root.val);
+        }
+        else
+            System.out.println(root.val);
+        printBinaryTree(root.left, level+1);
+    }
+
     public TreeNode constructBSTFromInOrder(int[] arr){
         return null;
     }

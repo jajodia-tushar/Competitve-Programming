@@ -21,7 +21,7 @@ public class PostOrderTraversal {
         System.out.println(result);
     }
 
-    public void traverse(TreeNode node, ArrayList<Integer> result) {
+    public static void traverse(TreeNode node, ArrayList<Integer> result) {
         if (node == null) return;
         traverse(node.left, result);
         traverse(node.right, result);

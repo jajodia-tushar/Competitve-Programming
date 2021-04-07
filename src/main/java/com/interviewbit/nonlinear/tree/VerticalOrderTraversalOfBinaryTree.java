@@ -61,6 +61,52 @@ public class VerticalOrderTraversalOfBinaryTree {
         traverse(A.right, diversion + 1, elevation + 1);
 
     }
+
+    public int[][] verticalOrderTraversalAnotherSolution(TreeNode A) {
+
+        if( A == null) return new int[0][0];
+
+        Map<Integer, ArrayList<Integer>> maps = new TreeMap<>();
+
+        Queue<TreeNodeWithXCoOrdinate> queue = new LinkedList<>();
+        TreeNodeWithXCoOrdinate specialNode = new TreeNodeWithXCoOrdinate(A,0);
+        queue.add(specialNode);
+
+        while(!queue.isEmpty()){
+
+            TreeNodeWithXCoOrdinate currNodeWithX = queue.poll();
+            TreeNode currentNode = currNodeWithX.node;
+            int currentXValue = currNodeWithX.xValue;
+
+            if(maps.containsKey(currentXValue)){
+                maps.get(currentXValue).add(currentNode.val);
+            }
+            else{
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(currentNode.val);
+                maps.put(currentXValue,list);
+            }
+
+            if( currentNode.left != null){
+                TreeNodeWithXCoOrdinate leftNode = new TreeNodeWithXCoOrdinate(currentNode.left,currentXValue - 1);
+                queue.add(leftNode);
+            }
+
+            if( currentNode.right != null){
+                TreeNodeWithXCoOrdinate rightNode = new TreeNodeWithXCoOrdinate(currentNode.right,currentXValue +1);
+                queue.add(rightNode);
+            }
+        }
+
+        int[][] result = new int[maps.size()][];
+        int i = 0;
+        for(ArrayList<Integer> list : maps.values()){
+            result[i++] = list.stream().mapToInt(a -> a).toArray();
+        }
+        return result;
+    }
+
+
 }
 
 class Pair implements Comparable<Pair> {
@@ -79,5 +125,16 @@ class Pair implements Comparable<Pair> {
     @Override
     public int compareTo(Pair next) {
         return Integer.compare(this.elevation, next.elevation);
+    }
+}
+
+
+class TreeNodeWithXCoOrdinate{
+    public TreeNode node;
+    public int xValue;
+
+    public TreeNodeWithXCoOrdinate(TreeNode node, int xValue) {
+        this.node = node;
+        this.xValue = xValue;
     }
 }
