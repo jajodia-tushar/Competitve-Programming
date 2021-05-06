@@ -25,11 +25,11 @@ public class FindingTheDiameterOfTree {
         int left = findHeight(root.left);
         int right = findHeight(root.right);
 
-        int currHeight = left + right + 2;
+        int currDiameter = left + right + 2;
         int leftHeight = findDiameter(root.left);
         int rightHeight = findDiameter(root.right);
 
-        return Math.max(currHeight,Math.max(leftHeight,rightHeight));
+        return Math.max(currDiameter,Math.max(leftHeight,rightHeight));
     }
 
     public DiameterAndHeight findDiameterOptimized(TreeNode node){
@@ -46,11 +46,12 @@ public class FindingTheDiameterOfTree {
         int rightDiameter = right.diameter;
         int rightHeight = right.height;
         // Using Same as Above Method Formula
-        int myDiameter = Math.max(leftDiameter,Math.max(rightDiameter,leftHeight + rightHeight + 2));
+        int diameterOfCurrentNode = leftHeight + rightHeight + 2;
+        int maxDiameter = Math.max(leftDiameter,Math.max(rightDiameter, diameterOfCurrentNode));
         // Think About this. This is same as finding Height.
         int myHeight = Math.max(leftHeight,rightHeight) + 1;
 
-        return new DiameterAndHeight(myDiameter,myHeight);
+        return new DiameterAndHeight(maxDiameter,myHeight);
     }
 
 
