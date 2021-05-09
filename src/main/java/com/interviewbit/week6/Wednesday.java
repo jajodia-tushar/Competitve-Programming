@@ -30,7 +30,7 @@ public class Wednesday {
         return maxSum;
     }
 
-    // Using Kadene's Method.
+    // Using    Kadene's Method.
     public int maxSubArray(final int[] A) {
         int max = Integer.MIN_VALUE;
         int maxTillNow = 0;

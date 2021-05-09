@@ -1,4 +1,4 @@
-package com.interviewbit.dp;
+package com.interviewbit.dp.matrixandgrid;
 
 public class LargestAreaOfRectangleWithPermutations {
 

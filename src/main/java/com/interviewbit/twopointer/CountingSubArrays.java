@@ -2,7 +2,7 @@ package com.interviewbit.twopointer;
 
 import com.interviewbit.utils.ArrayUtils;
 
-public class CountingSubArrays {
+public class  CountingSubArrays {
 
     public static void main(String[] args) {
         CountingSubArrays obj = new CountingSubArrays();

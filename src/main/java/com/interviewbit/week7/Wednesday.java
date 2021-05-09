@@ -25,7 +25,7 @@ public class Wednesday {
     Such that : sum(B[1],..B[i]) = sum(B[i+1],...B[j]) = sum(B[j+1],...B[n])
     ============================================================================================================================================
 
-    I was not able to solve this problem
+    I was not able to solve tshis problem
     this solved
     https://medium.com/@abhi1kush/count-the-number-of-ways-to-divide-an-array-into-three-contiguous-parts-having-equal-sum-873a8cfb9c85
 
