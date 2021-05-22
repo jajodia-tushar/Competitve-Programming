@@ -1,4 +1,4 @@
-package com.interviewbit.wedmegood;
+package interview.wedmegood;
 
 public class SecondQuestion {
 

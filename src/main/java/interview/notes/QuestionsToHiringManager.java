@@ -1,4 +1,4 @@
-package com.interviewbit.notes;
+package interview.notes;
 
 public class QuestionsToHiringManager {
 

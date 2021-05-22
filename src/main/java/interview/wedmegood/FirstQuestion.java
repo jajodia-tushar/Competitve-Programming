@@ -1,4 +1,4 @@
-package com.interviewbit.wedmegood;
+package interview.wedmegood;
 
 import java.util.Arrays;
 
