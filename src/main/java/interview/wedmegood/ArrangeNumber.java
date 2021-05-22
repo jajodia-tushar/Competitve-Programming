@@ -1,11 +1,11 @@
-package com.interviewbit.other;
+package interview.wedmegood;
 
-public class Main {
+public class ArrangeNumber {
 
     public static void main(String[] args) {
-        Main main = new Main();
+        ArrangeNumber arrangeNumber = new ArrangeNumber();
         int[] ints = {23, 45, 0, 0, -98, 0, 100, 0};
-        main.arrangeNumbers(ints);
+        arrangeNumber.arrangeNumbers(ints);
         for (int num : ints) {
             System.out.print(num + ", ");
         }
