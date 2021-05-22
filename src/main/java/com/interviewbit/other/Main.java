@@ -1,4 +1,4 @@
-package com.interviewbit.week20;
+package com.interviewbit.other;
 
 public class Main {
 

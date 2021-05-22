@@ -1,6 +1,6 @@
 package com.interviewbit.dp;
 
-import com.interviewbit.nonlinear.util.TreeNode;
+import com.interviewbit.utils.TreeNode;
 
 public class MaxSumPathInBinaryTree {
 

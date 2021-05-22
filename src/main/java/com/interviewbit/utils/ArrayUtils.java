@@ -12,6 +12,15 @@ public class ArrayUtils {
         System.out.println("]");
     }
 
+    public static ArrayList<Character> getCharacterListFromString(String str){
+        ArrayList<Character> list = new ArrayList<>();
+        for(Character ch : str.toCharArray()){
+            list.add(ch);
+        }
+
+        return list;
+    }
+
     public static void printArray(long[] arr) {
         System.out.print("[ ");
         for( long x : arr){
