@@ -6,7 +6,7 @@ public class MinJumpsArray {
 
     public static void main(String[] args) {
         MinJumpsArray obj = new MinJumpsArray();
-        int[] ints = ArrayUtils.asArrays(2, 3, 1, 1, 4);
+        int[] ints = ArrayUtils.asArrays(7,0,9,6,9,6,1,7,9,0,1,2,9,0,3);
         int result = obj.jump(ints);
         System.out.println(result);
     }

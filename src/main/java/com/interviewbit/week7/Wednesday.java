@@ -167,7 +167,7 @@ public class Wednesday {
     The three Number can Fall like this
 
     1. A A A       ------> Max1A, Max2A, Max3A  can make the Solution. Can't be overflow
-    2. A A B       ------> Max1A, Max2A, Max1B or Min1A, Min2A, Min1B  can make the Solution.
+    2. A A B       ------> Max1A, Max2A, Min1b or Min1A, Min2A, Min1B  can make the Solution.
     3. A A C       ------> Min1A, Min2A, Min1C  can make the Solution. Can't be Underflow
     4. A B B       ------> Min1A, Min1B, Min2B  can make the Solution. Can't be Underflow
     5. A B C       ------> Min1A, Min1B, Min1C  can Make the Solution. Can't be Underflow.
@@ -190,60 +190,68 @@ public class Wednesday {
 
     public static int findingIfTheTripletSumIsInTheGivenRange(String[] A) {
 
-        double max1a = Integer.MIN_VALUE,
-                max2a = Integer.MIN_VALUE,
-                max3a = Integer.MIN_VALUE,
-                max1b = Integer.MIN_VALUE;
+        double max1A = Integer.MIN_VALUE,
+                max2A = Integer.MIN_VALUE,
+                max3A = Integer.MIN_VALUE,
+                max1B = Integer.MIN_VALUE;
 
-        double min1a = Integer.MAX_VALUE,
-                min2a = Integer.MAX_VALUE,
-                min1b = Integer.MAX_VALUE,
-                min2b = Integer.MAX_VALUE,
-                min1c = Integer.MAX_VALUE;
+        double min1A = Integer.MAX_VALUE,
+                min2A = Integer.MAX_VALUE,
+                min1B = Integer.MAX_VALUE,
+                min2B = Integer.MAX_VALUE,
+                min1C = Integer.MAX_VALUE;
 
 
         for (int i = 0; i < A.length; i++) {
             double num = Double.parseDouble(A[i]);
             if (isInA(num)) {
-                if (num > max1a) {
-                    max3a = max2a;
-                    max2a = max1a;
-                    max1a = num;
-                } else if (num > max2a) {
-                    max3a = max2a;
-                    max2a = num;
-                } else if (num > max3a) max3a = num;
-                if (num < min1a) {
-                    min2a = min1a;
-                    min1a = num;
-                } else if (num < min2a) min2a = num;
+                if (num > max1A) {
+                    max3A = max2A;
+                    max2A = max1A;
+                    max1A = num;
+                } else if (num > max2A) {
+                    max3A = max2A;
+                    max2A = num;
+                } else if (num > max3A) max3A = num;
+                if (num < min1A) {
+                    min2A = min1A;
+                    min1A = num;
+                } else if (num < min2A) min2A = num;
             } else if (isInB(num)) {
-                if (num > max1b)
-                    max1b = num;
+                if (num > max1B)
+                    max1B = num;
 
-                if (num < min1b) {
-                    min2b = min1b;
-                    min1b = num;
-                } else if (num < min2b) min2b = num;
+                if (num < min1B) {
+                    min2B = min1B;
+                    min1B = num;
+                } else if (num < min2B) min2B = num;
             } else if (isInC(num)) {
 
-                if (num < min1c) min1c = num;
+                if (num < min1C) min1C = num;
             }
         }
-        if ((max1a + max2a + max3a) > 1.0)
+
+        if ((max1A + max2A + max3A) > 1.0)
             return 1;
-        else if ((max1a + max2a + min1b) > 1.0 && (max1a + max2a + min1b) < 2.0)
+        else if ((max1A + max2A + min1B) > 1.0 && (max1A + max2A + min1B) < 2.0)
             return 1;
-        else if ((min1a + min2a + max1b) > 1.0 && (min1a + min2a + max1b) < 2.0)
+        else if ((min1A + min2A + max1B) > 1.0 && (min1A + min2A + max1B) < 2.0)
             return 1;
-        else if ((min1a + min2a + min1c) < 2.0)
+        else if ((min1A + min2A + min1C) < 2.0)
             return 1;
-        else if ((min1a + min1b + min2b) < 2.0)
+        else if ((min1A + min1B + min2B) < 2.0)
             return 1;
-        else if ((min1a + min1b + min1c) < 2.0)
+        else if ((min1A + min1B + min1C) < 2.0)
             return 1;
 
-        return 0;
+//        return 0;
+
+        if ((max1A + max2A + max3A) > 1.0) return 1;
+        else if ((max1A + max2A + min1B) > 1.0 && (max1A + max2A + min1B) < 2.0) return 1;
+        else if ((min1A + min2A + max1B) > 1.0 && (min1A + min2A + max1B) < 2.0) return 1;
+        else if ((min1A + min1B + min2B) > 1.0) return 1;
+        else if ((min1A + min1B + min1C) > 1.0) return 1;
+        else return 0;
 
 
     }
@@ -311,11 +319,11 @@ public class Wednesday {
 
     public static List<Integer> sortingTheArrayLikeWave(List<Integer> A) {
         Collections.sort(A);
-        for(int i = 0; i <= A.size()-2; i+=2){
+        for (int i = 0; i <= A.size() - 2; i += 2) {
             int previous = A.get(i);
-            int next = A.get(i+1);
-            A.set(i,next);
-            A.set(i+1,previous);
+            int next = A.get(i + 1);
+            A.set(i, next);
+            A.set(i + 1, previous);
         }
         return A;
     }

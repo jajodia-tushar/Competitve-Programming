@@ -75,6 +75,11 @@ public class Thursday {
             min2 = Math.min(min2, arr[i] - i);
             max1 = Math.max(max1, arr[i] + i);
             max2 = Math.max(max2, arr[i] - i);
+
+            max1 = Math.max(max1,arr[i] + i);
+            max2 = Math.max(max2,arr[i] - i);
+            min1 = Math.min(min1,arr[i] + 1);
+            min2 = Math.min(min2,arr[i] - 1);
         }
 
         return Math.max(max1 - min1, max2 - min2);
