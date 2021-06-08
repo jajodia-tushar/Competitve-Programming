@@ -9,6 +9,7 @@ public class Saturday {
             Sorted Permutation Rank with Repeats
      */
 
+
     public int findRank(String A) {
 
         int n  = A.length();
@@ -160,7 +161,7 @@ public class Saturday {
     public static void main(String[] args) {
 
         Saturday obj = new Saturday();
-        System.out.println(obj.solve("85416895"));
+        System.out.println(obj.findRank("bbbbaaaa"));
     }
 
 

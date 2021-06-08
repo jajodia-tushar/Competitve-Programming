@@ -1,4 +1,4 @@
-package com.interviewbit.maths;
+package com.interviewbit.math;
 
 import com.interviewbit.utils.ArrayUtils;
 
