@@ -18,10 +18,10 @@ public class FloydWarshallAlgorithm {
 
         int[][] dp = new int[row][col];
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < row; j++) {
-                for (int k = 0; k < col; k++) {
-                    dp[j][k] = Math.min(ints[j][k], ints[j][i] + ints[i][k]);
+        for (int k = 0; k < row; k++) {
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    dp[i][j] = Math.min(ints[i][j], ints[i][k] + ints[k][j]);
                 }
             }
             ints = dp;
