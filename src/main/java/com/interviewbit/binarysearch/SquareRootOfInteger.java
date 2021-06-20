@@ -26,10 +26,14 @@ public class SquareRootOfInteger {
                 min = mid + 1;
             }
             else{
-                max = min - 1;
+                max = mid - 1;
             }
         }
         return ans;
     }
-
 }
+
+/*
+    you want the number which can range from 1 to A at max so you can use Binary search to try the possibility
+
+ */

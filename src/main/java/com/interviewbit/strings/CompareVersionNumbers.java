@@ -1,4 +1,4 @@
-package com.interviewbit.binarysearch;
+package com.interviewbit.strings;
 
 public class CompareVersionNumbers {
 

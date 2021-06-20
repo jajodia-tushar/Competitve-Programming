@@ -6,7 +6,7 @@ public class CoinsInALine {
 
         CoinsInALine obj = new CoinsInALine();
         int[] ints = {1, 2, 3, 4};
-        int result = obj.maxcoin(ints);
+        int result = obj.solve(0, 3, ints);
         System.out.println(result);
 
     }
@@ -34,4 +34,16 @@ public class CoinsInALine {
         return dp[0][n - 1];
 
     }
+
+    public int solve(int i, int j, int[] arr) {
+        if (i < 0 || j >= arr.length || i > j) return 0;
+        if (i == j) return arr[i];
+
+        int x = solve(i + 2, j, arr);
+        int y = solve(i + 1, j - 1, arr);
+        int z = solve(i, j + 2, arr);
+        return Math.max(arr[i] + Math.min(x, y), arr[j] + Math.min(y, z));
+    }
+
+
 }

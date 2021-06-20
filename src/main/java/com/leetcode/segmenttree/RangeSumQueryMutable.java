@@ -44,7 +44,7 @@ public class RangeSumQueryMutable {
 
     public static void main(String[] args) {
 
-        int[] ints = {1, 3, 5};
+        int[] ints = {0,9,5,7,3};
         RangeSumQueryMutable obj = new RangeSumQueryMutable(ints);
         int result = obj.sumRange(0, 2);
         System.out.println(result);
@@ -61,6 +61,10 @@ public class RangeSumQueryMutable {
         this.segmentArray = new int[size];
         this.originalArray = nums;
         constructSegmentTree(nums, 0, n - 1, 0);
+        for (int i = 0; i < size; i++) {
+            System.out.print(this.segmentArray[i] + " ");
+        }
+        System.out.println();
     }
 
     public void update(int index, int val) {
@@ -68,6 +72,10 @@ public class RangeSumQueryMutable {
         int diff = val - this.originalArray[index];
         this.originalArray[index] = val;
         updateSegmentTree(0, n - 1, index, diff, 0);
+        for (int i = 0; i < this.segmentArray.length; i++) {
+            System.out.print(this.segmentArray[i] + " ");
+        }
+        System.out.println();
     }
 
     public int sumRange(int left, int right) {
