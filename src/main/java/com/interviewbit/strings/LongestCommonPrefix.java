@@ -1,6 +1,7 @@
 package com.interviewbit.strings;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 
 public class LongestCommonPrefix {
 
@@ -24,7 +25,7 @@ public class LongestCommonPrefix {
     public String longestCommonPrefix(String[] A) {
         int n = A.length;
         StringBuilder str = new StringBuilder();
-        if( n == 0) return str.toString();
+        if (n == 0) return str.toString();
 
         Arrays.sort(A);
 
@@ -34,12 +35,11 @@ public class LongestCommonPrefix {
         int min = strFirst.length();
 
         int i = 0;
-        while(i < min){
-            if(strFirst.charAt(i) == strLast.charAt(i)){
+        while (i < min) {
+            if (strFirst.charAt(i) == strLast.charAt(i)) {
                 str.append(strFirst.charAt(i));
                 i++;
-            }
-            else{
+            } else {
                 break;
             }
         }
@@ -47,3 +47,12 @@ public class LongestCommonPrefix {
         return str.toString();
     }
 }
+
+/*
+    You don't have to check for the prefix in all the array element.
+    You can do it for just two the first and the last one .
+    Can you do for any two items
+    No it won't work that way because two element may have more common elements than the global.
+    But the first and the last one after sorting will have the most number of difference in terms of
+    characters so this technique works.
+ */
