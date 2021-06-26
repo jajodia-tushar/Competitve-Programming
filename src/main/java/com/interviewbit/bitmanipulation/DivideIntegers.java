@@ -1,5 +1,6 @@
 package com.interviewbit.bitmanipulation;
 
+// YOU MIGHT NEED TO VISIT THIS CHECKAGAIN
 public class DivideIntegers {
 
     public static void main(String[] args) {
@@ -30,3 +31,15 @@ public class DivideIntegers {
 
     }
 }
+
+/*
+    There is nothing much in this question apart from the edge cases.
+    just the main concept is
+    if B << i [ i start from 32 till 0]
+
+    is smaller than A that means this value is i is the first set bit in the answer.
+    Just this much will work.
+    Nothing ire required more.
+
+
+ */
