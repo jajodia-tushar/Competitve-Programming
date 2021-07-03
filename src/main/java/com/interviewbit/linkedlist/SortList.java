@@ -1,16 +1,25 @@
 package com.interviewbit.linkedlist;
 
+/*
+Sort a linked list in O(n log n) time using constant space complexity.
+
+Example :
+
+Input : 1 -> 5 -> 4 -> 3
+
+Returned list : 1 -> 3 -> 4 -> 5
+ */
 public class SortList {
 
     public static void main(String[] args) {
-        ListNode head = ListNode.createLinkedList(5,66,68,42,73,25,84,63,72,20,77,38,8,99,92,49,74,45,30,51,50,95,56,19,31,26,98,67,100,2,24,6,37,69,11,16,61,23,78,27,64,87,3,85,55,22,33,62);
+        ListNode head = ListNode.createLinkedList(5, 66, 68, 42, 73, 25, 84, 63, 72, 20, 77, 38, 8, 99, 92, 49, 74, 45, 30, 51, 50, 95, 56, 19, 31, 26, 98, 67, 100, 2, 24, 6, 37, 69, 11, 16, 61, 23, 78, 27, 64, 87, 3, 85, 55, 22, 33, 62);
         SortList obj = new SortList();
         obj.sortList(head).printList();
     }
 
     public ListNode sortList(ListNode A) {
 
-        if(A == null || A.next == null){
+        if (A == null || A.next == null) {
             return A;
         }
 
@@ -21,36 +30,35 @@ public class SortList {
         ListNode left = sortList(A);
         ListNode right = sortList(middleNext);
 
-        ListNode finalList = merge(left,right);
-        return finalList;
+        return merge(left, right);
+
 
     }
 
-    public ListNode merge(ListNode left,ListNode right){
+    public ListNode merge(ListNode left, ListNode right) {
 
-        if(left == null)
+        if (left == null)
             return right;
-        if(right == null)
+        if (right == null)
             return left;
         ListNode result = null;
-        if(left.val < right.val){
+        if (left.val < right.val) {
             result = left;
-            result.next = merge(left.next,right);
-        }
-        else{
+            result.next = merge(left.next, right);
+        } else {
             result = right;
-            right.next = merge(left,right.next);
+            right.next = merge(left, right.next);
         }
 
         return result;
     }
 
-    public ListNode getMiddle(ListNode A){
+    public ListNode getMiddle(ListNode A) {
 
         ListNode faster = A;
         ListNode slower = A;
 
-        while(faster.next != null && faster.next.next != null){
+        while (faster.next != null && faster.next.next != null) {
             faster = faster.next.next;
             slower = slower.next;
         }
@@ -59,3 +67,8 @@ public class SortList {
 
     }
 }
+/*
+    There is nothing hard and fast in this question.
+    Things are simple and Easy to grasp.
+    Do Merge Sort and it works like magic
+ */

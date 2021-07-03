@@ -37,10 +37,13 @@ public class QuestionsToHiringManager {
 
     Is this a new Position or someone left ?
 
+    - What is your favorite part of the role you work in?
+    - If you could change one thing about your job or company, what would it be?
+    - What would an ideal candidate be like?
+    - What tips would you give to students looking towards a career path in role x?
 
 
     */
-
 
 
 }

@@ -3,6 +3,23 @@ package com.interviewbit.twopointer;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+
+Remove Duplicates from Sorted Array
+
+Given a sorted array, remove the duplicates in place such that each element can appear at most twice and return the new length.
+
+Do not allocate extra space for another array, you must do this in place with constant memory.
+
+Note that even though we want you to return the new length, make sure to change the original array as well in place
+
+For example,
+
+Given input array A = [1,1,1,2],
+
+Your function should return length = 3, and A is now [1,1,2].
+ */
+// YOU MIGHT NEED TO VISIT THIS CHECKAGAIN
 public class RemoveDuplicatesFromSortedArrayII {
 
     public static void main(String[] args) {
@@ -15,29 +32,29 @@ public class RemoveDuplicatesFromSortedArrayII {
 
     public int removeDuplicates(List<Integer> a) {
 
-        int first = 0;
-        int next = 1;
-        int index = 1;
-        int count = 0;
-        while(next < a.size()){
+        int i = 0;
+        int j = 2;
+        int n = a.size();
 
-            if(a.get(first).equals(a.get(next)) && (count == 1)){
-                next++;
+        if (n < 3) return n;
+
+        while (j < n) {
+            if (a.get(j - 2).equals(a.get(j - 1)) && a.get(j - 1).equals(a.get(j))) {
+                j++;
+            } else {
+                a.set(i, a.get(j - 2));
+                i++;
+                j++;
             }
-            else if(a.get(first).equals(a.get(next))){
-                count++;
-                a.set(index,a.get(next));
-                index++;
-            }
-            else{
-                a.set(index,a.get(next));
-                first = next;
-                next++;
-                index++;
-                count = 0;
+
+            if (j == n) {
+                a.set(i++, a.get(j - 2));
+                a.set(i, a.get(j - 1));
             }
         }
-        return index;
-
+        return i + 1;
     }
 }
+/*
+    Similar to the one done previously.
+ */

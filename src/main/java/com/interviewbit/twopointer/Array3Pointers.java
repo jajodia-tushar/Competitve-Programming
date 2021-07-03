@@ -2,6 +2,27 @@ package com.interviewbit.twopointer;
 
 import com.interviewbit.utils.ArrayUtils;
 
+/*
+You are given 3 arrays A, B and C. All 3 of the arrays are sorted.
+
+Find i, j, k such that :
+max(abs(A[i] - B[j]), abs(B[j] - C[k]), abs(C[k] - A[i])) is minimized.
+Return the minimum max(abs(A[i] - B[j]), abs(B[j] - C[k]), abs(C[k] - A[i]))
+
+**abs(x) is absolute value of x and is implemented in the following manner : **
+
+      if (x < 0) return -x;
+      else return x;
+Example :
+
+Input :
+        A : [1, 4, 10]
+        B : [2, 15, 20]
+        C : [10, 12]
+
+Output : 5
+         With 10 from A, 15 from B and 10 from C.
+ */
 public class Array3Pointers {
 
     public static void main(String[] args) {
@@ -26,36 +47,31 @@ public class Array3Pointers {
         int q = B.length;
         int r = C.length;
         int min = Integer.MAX_VALUE;
-        while( i < p && j < q && k < r){
+        while (i < p && j < q && k < r) {
 
             int ij = Math.abs(A[i] - B[j]);
             int jk = Math.abs(B[j] - C[k]);
             int ki = Math.abs(C[k] - A[i]);
 
-            int sum = Math.max(ij,Math.max(jk,ki));
-            min = Math.min(min,sum);
+            int sum = Math.max(ij, Math.max(jk, ki));
+            min = Math.min(min, sum);
 
-            if(ij >= jk && ij >= ki){
-                if(A[i] < B[j]){
+            if (ij >= jk && ij >= ki) {
+                if (A[i] < B[j]) {
                     i++;
-                }
-                else{
+                } else {
                     j++;
                 }
-            }
-            else if(jk >= ij && jk >= ki){
-                if(B[j] < C[k]){
+            } else if (jk >= ij && jk >= ki) {
+                if (B[j] < C[k]) {
                     j++;
-                }
-                else{
+                } else {
                     k++;
                 }
-            }
-            else{
-                if(C[k] < A[i]){
+            } else {
+                if (C[k] < A[i]) {
                     k++;
-                }
-                else{
+                } else {
                     i++;
                 }
             }
@@ -64,19 +80,17 @@ public class Array3Pointers {
         return min;
     }
 
-     void findClosest(int A[], int B[], int C[])
-    {
+    void findClosest(int A[], int B[], int C[]) {
         int diff = Integer.MAX_VALUE; // Initialize min diff
         int p = A.length;
         int q = B.length;
         int r = C.length;
 
-        int res_i =0, res_j = 0, res_k = 0;
+        int res_i = 0, res_j = 0, res_k = 0;
 
 
         int i = 0, j = 0, k = 0;
-        while (i < p && j < q && k < r)
-        {
+        while (i < p && j < q && k < r) {
 
             int minimum = Math.min(A[i],
                     Math.min(B[j], C[k]));
@@ -84,8 +98,7 @@ public class Array3Pointers {
                     Math.max(B[j], C[k]));
 
 
-            if (maximum-minimum < diff)
-            {
+            if (maximum - minimum < diff) {
                 res_i = i;
                 res_j = j;
                 res_k = k;
@@ -104,3 +117,20 @@ public class Array3Pointers {
                 B[res_j] + " " + C[res_k]);
     }
 }
+
+/*
+    Look for copy for reference.
+
+    The Second technique look amazing to me.
+    See the Max(abs(),abs(),abs()) will actually
+    one value out of the three absolute and
+    since we are taking all the combination of the three number.
+    Max(a,b,c) - Min(a,b,c) will work.
+    And now we just have to minimize this.
+    We can start from i j k as 0 and increase the number which is minimum everytime
+    and it would work.
+
+    So,
+    You can find that out look at the code you will understand.
+
+ */

@@ -5,11 +5,22 @@ import com.interviewbit.utils.ArrayUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/*
+Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0?
+Find all unique triplets in the array which gives the sum of zero.
+
+Note:
+
+ Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ≤ b ≤ c)
+The solution set must not contain duplicate triplets. For example, given array S = {-1 0 1 2 -1 -4}, A solution set is:
+(-1, 0, 1)
+(-1, -1, 2)
+ */
 public class ThreeSumToZero {
 
     public static void main(String[] args) {
         ThreeSumToZero obj = new ThreeSumToZero();
-        int[] ints = ArrayUtils.asArrays(1, -4, 0, 0, 5, -5, 1, 0, -2, 4, -4, 1, -1, -4, 3, 4, -1, -1, -3);
+        int[] ints = ArrayUtils.asArrays(-1, 0, 1, 2, -1, -4);
         int[][] ints1 = obj.threeSum(ints);
         ArrayUtils.printArray(ints1);
     }
@@ -55,3 +66,13 @@ public class ThreeSumToZero {
         return A;
     }
 }
+
+/*
+    Same as the Two Sum Just need to think about how to avoid duplicate.
+    For that we can have a hasSet. or thing like that.
+
+    Or we can smartly Skip the repeated numbers as the array is sorted now.
+    So while traversing the array if the next element is same as the previous
+    element we can skip this. in the number that is fixed. The left as well as the right array.
+    Or we can have actually remove them from the array altogether in the initial phase only.
+ */

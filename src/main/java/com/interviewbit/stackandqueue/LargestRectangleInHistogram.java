@@ -5,7 +5,7 @@ import java.util.Stack;
 public class LargestRectangleInHistogram {
 
     public static void main(String[] args) {
-        int arr[] = {47, 69, 67, 97, 86, 34, 98, 16, 65, 95, 66, 69, 18, 1, 99, 56, 35, 9, 48, 72, 49, 47, 1, 72, 87, 52, 13, 23, 95, 55, 21, 92, 36, 88, 48, 39, 84, 16, 15, 65, 7, 58, 2, 21, 54, 2, 71, 92, 96, 100, 28, 31, 24, 10, 94, 5, 81, 80, 43, 35, 67, 33, 39, 81, 69, 12, 66, 87, 86, 11, 49, 94, 38, 44, 72, 44, 18, 97, 23, 11, 30, 72, 51, 61, 56, 41, 30, 71, 12, 44, 81, 43, 43, 27  };
+        int arr[] = {90, 58, 69, 70, 82, 100, 13, 57, 47, 18  };
         LargestRectangleInHistogram obj = new LargestRectangleInHistogram();
         System.out.println(obj.largestRectangleArea(arr));
     }
@@ -14,6 +14,7 @@ public class LargestRectangleInHistogram {
 
         if(A.length == 1)
             return A[0];
+
 
         int[] nextSmallestOnRight = new int[A.length];
         int[] nextSmallestOnLeft = new int[A.length];
@@ -27,7 +28,7 @@ public class LargestRectangleInHistogram {
             }
 
             if(stack.isEmpty())
-                nextSmallestOnLeft[i] = 0;
+                nextSmallestOnLeft[i] = -1;
             else
                 nextSmallestOnLeft[i] = stack.peek();
 
@@ -53,6 +54,7 @@ public class LargestRectangleInHistogram {
         int max = Integer.MIN_VALUE;
 
         for(int i = 0; i < A.length; i++){
+            // System.out.println(A[i]+" --> "+nextSmallestOnRight[i]+" -- " + " -- "+ nextSmallestOnLeft[i]);
             int area = nextSmallestOnRight[i] - nextSmallestOnLeft[i] - 1;
             max = Math.max(max,area*A[i]);
         }
