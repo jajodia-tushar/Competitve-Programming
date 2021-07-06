@@ -40,7 +40,7 @@ public class GrayCode {
     public static void main(String[] args) {
 
         GrayCode obj = new GrayCode();
-        List<Integer> result = obj.grayCodeX(4);
+        List<Integer> result = obj.grayCode(4);
         System.out.println(result);
     }
 
@@ -103,5 +103,32 @@ public class GrayCode {
         }
         return false;
     }
-
 }
+
+/*
+    The first Process
+    grayCode(n - 1)
+        invert Bit
+    grayCode(n - 1)
+    is still not understandable.
+
+    I will explain to you,
+    this one.
+        let index be i and gray code for that index be g(i)
+            now one interesting observation is
+            i ^ g(i) = i / 2
+            Try some values.
+                0 ^ 0 --> 0
+                1 ^ 1 --> 0
+                2 ^ 3 --> 1
+                3 ^ 2 --> 1
+                4 ^ 6 --> 2
+                5 ^ 7 --> 2
+                6 ^ 5 --> 3
+                7 ^ 4 --> 3
+            So if we modify G(i) => i ^ (i / 2)
+
+            We are done.
+            So we are just doing this.
+            In the Optimized Version of this Code.
+ */
