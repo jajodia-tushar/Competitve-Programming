@@ -3,6 +3,22 @@ package com.interviewbit.hashing;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/*
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in linear time complexity.
+Note that when the count of a character C in T is N, then the count of C in minimum window in S should be at least N.
+
+Example :
+
+S = "ADOBECODEBANC"
+T = "ABC"
+Minimum window is "BANC"
+
+ Note:
+If there is no such window in S that covers all characters in T, return the empty string ''.
+If there are multiple such windows, return the first occurring minimum window ( with minimum start index ).
+ */
+
 public class WindowString {
 
     public static void main(String[] args) {
@@ -98,3 +114,16 @@ public class WindowString {
         return minLen == Integer.MAX_VALUE ? "" : A.substring(startIdx, endIdx);
     }
 }
+
+/*
+    One of the Interesting Problem.
+    You can use the HashMap to track the count of the characters effectively.
+
+    Basic idea is to use two pointes,
+    end and start.
+    Increase end until all the characters are matched from required String in given string.
+    once this is done. start increasing the start until the above condition is valid, here we are decreasing
+    the size of the window.
+    Look the copy for more details.
+
+ */
