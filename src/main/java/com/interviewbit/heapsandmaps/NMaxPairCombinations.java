@@ -4,6 +4,30 @@ import com.interviewbit.utils.ArrayUtils;
 
 import java.util.*;
 
+/*
+Given two arrays A & B of size N each.
+
+Find the maximum N elements from the sum combinations (Ai + Bj) formed from elements in array A and  B.
+
+For example if A = [1,2], B = [3,4], then possible pair sums can be 1+3 = 4  , 1+4=5  ,   2+3=5   ,    2+4=6
+
+and maximum 2 elements are 6, 5
+
+Example:
+
+N = 4
+
+a[]={1,4,2,3}
+
+b[]={2,5,1,6}
+
+Maximum 4 elements of combinations sum are
+10   (4+6),
+9    (3+6),
+9    (4+5),
+8    (2+6)
+ */
+
 public class NMaxPairCombinations {
 
     public static void main(String[] args) {
@@ -26,19 +50,19 @@ public class NMaxPairCombinations {
         Arrays.sort(A);
         Arrays.sort(B);
 
-        PriorityQueue<PairSum> heap = new PriorityQueue<>(Comparator.comparing(x -> x.sum));
+        PriorityQueue<PairWiseSum> heap = new PriorityQueue<>(Comparator.comparing(x -> x.sum));
 
-        Set<PairSum> alreadyAddedList = new HashSet<>();
-        PairSum first = new PairSum(n - 1, n - 1, A[n - 1] + B[n - 1]);
+        Set<PairWiseSum> alreadyAddedList = new HashSet<>();
+        PairWiseSum first = new PairWiseSum(n - 1, n - 1, A[n - 1] + B[n - 1]);
         heap.add(first);
         alreadyAddedList.add(first);
 
         while (n-- > 0) {
-            PairSum maxPair = heap.poll();
+            PairWiseSum maxPair = heap.poll();
             result[resultIndex++] = maxPair.sum;
 
             if (maxPair.i - 1 >= 0) {
-                PairSum p = new PairSum(maxPair.i - 1, maxPair.j, A[maxPair.i - 1] + B[maxPair.j]);
+                PairWiseSum p = new PairWiseSum(maxPair.i - 1, maxPair.j, A[maxPair.i - 1] + B[maxPair.j]);
                 if (!alreadyAddedList.contains(p)) {
                     heap.add(p);
                     alreadyAddedList.add(p);
@@ -46,7 +70,7 @@ public class NMaxPairCombinations {
             }
 
             if (maxPair.j - 1 >= 0) {
-                PairSum q = new PairSum(maxPair.i, maxPair.j - 1, A[maxPair.i] + B[maxPair.j - 1]);
+                PairWiseSum q = new PairWiseSum(maxPair.i, maxPair.j - 1, A[maxPair.i] + B[maxPair.j - 1]);
                 if (!alreadyAddedList.contains(q)) {
                     heap.add(q);
                     alreadyAddedList.add(q);
@@ -75,7 +99,7 @@ class PairSum implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        PairSum obj = (PairSum) o;
+        PairWiseSum obj = (PairWiseSum) o;
         return Integer.compare(obj.sum, this.sum);
     }
 
@@ -83,9 +107,9 @@ class PairSum implements Comparable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PairSum pairSum = (PairSum) o;
-        return i == pairSum.i &&
-                j == pairSum.j;
+        PairWiseSum pairWiseSum = (PairWiseSum) o;
+        return i == pairWiseSum.i &&
+                j == pairWiseSum.j;
     }
 
     @Override
@@ -93,3 +117,22 @@ class PairSum implements Comparable {
         return Objects.hash(i, j);
     }
 }
+
+/*
+       The Max will be A[n - 1] * B[m - 1]
+       Now the second max can be
+                    A[n - 2] * B[m - 1]   A = [6,5,4,3], B = [6,4,3,2]
+                            OR
+                    A[n - 1] * B[m - 1]   B = [6,5,4,3], A = [6,4,3,2]
+
+
+       Extending this same technique more,
+       We can say that if we know the current max, the next max will be
+       n - 1 * m or n * m - 1 ( where n and m are the position in array A and B for current max value)
+
+       We need the sets to keep track of already added items.
+       And Heap to sort the items at runtime
+
+
+       There is nothing More. It's Easy.
+ */
