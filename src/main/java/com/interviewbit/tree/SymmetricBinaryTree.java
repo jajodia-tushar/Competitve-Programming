@@ -2,6 +2,27 @@ package com.interviewbit.tree;
 
 import com.interviewbit.utils.TreeNode;
 
+/*
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
+
+Example :
+
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+The above binary tree is symmetric.
+
+But the following is not:
+
+    1
+   / \
+  2   2
+   \   \
+   3    3
+Return 0 / 1 ( 0 for false, 1 for true ) for this problem
+ */
 public class SymmetricBinaryTree {
 
     public static void main(String[] args) {
@@ -23,22 +44,28 @@ public class SymmetricBinaryTree {
     }
 
     public int isSymmetric(TreeNode A) {
-        return isMirror(A,A) ? 1 : 0;
+        return isMirror(A, A) ? 1 : 0;
     }
 
-    public boolean isMirror(TreeNode firstNode,TreeNode secondNode){
+    public boolean isMirror(TreeNode firstNode, TreeNode secondNode) {
 
-        if( firstNode == null && secondNode == null)
+        if (firstNode == null && secondNode == null)
             return true;
 
 
-        if((firstNode != null && secondNode != null) &&
+        if ((firstNode != null && secondNode != null) &&
                 (firstNode.val == secondNode.val))
-            return isMirror(firstNode.left,secondNode.right) &&
-                    isMirror(firstNode.right,secondNode.left);
+            return isMirror(firstNode.left, secondNode.right) &&
+                    isMirror(firstNode.right, secondNode.left);
 
 
         return false;
 
     }
 }
+
+/*
+    Easy,
+    Just Remember to pass two variables.
+    With One it's not possible
+ */

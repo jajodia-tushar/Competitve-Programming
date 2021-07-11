@@ -5,6 +5,33 @@ import com.interviewbit.utils.ArrayUtils;
 
 import static com.interviewbit.tree.InorderTraversal.findPredecessor;
 
+/*
+Two elements of a binary search tree (BST) are swapped by mistake.
+
+Tell us the 2 values swapping which the tree will be restored.
+
+Note:
+
+A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
+
+Example :
+
+
+Input :
+         1
+        / \
+       2   3
+
+Output :
+       [1, 2]
+
+Explanation : Swapping 1 and 2 will change the BST to be
+         2
+        / \
+       1   3
+which is a valid BST
+ */
+//SEEAGAIN
 public class RecoverBinarySearchTree {
 
     TreeNode first;
@@ -29,89 +56,90 @@ public class RecoverBinarySearchTree {
         root.right = new TreeNode(30);
         root.right.right = new TreeNode(40);
 
+//        TreeNode.inOrderPrint(root);
+
+
         int[] ints = obj.recoverTree(root);
         ArrayUtils.printArray(ints);
 
     }
 
-    public int[] recoverTree(TreeNode A){
-
-//        Below Lines is for Modified Version of Morris Inorder traversal which is not working now
-//        modifiedMorrisInorderTraversal(A);
-//        int[] result = new int[2];
-//        result[0] = Math.min(first.value,second.value);
-//        result[1] = Math.max(first.value,second.value);
-//        return result;
-
-        modifiedInorderTraversal(A);
+    public int[] recoverTree(TreeNode A) {
+        traverse(A);
         int[] result = new int[2];
-        result[0] = Math.min(first.val,second.val);
-        result[1] = Math.max(first.val,second.val);
+        result[0] = Math.min(first.val, second.val);
+        result[1] = Math.max(first.val, second.val);
         return result;
-
     }
 
-    public void modifiedInorderTraversal(TreeNode node){
+    public TreeNode findPredecessor(TreeNode node) {
 
-        if( node == null) return;
-        else{
+        TreeNode predecessor = node.left;
+        while (predecessor.right != null && predecessor.right != node) {
+            predecessor = predecessor.right;
+        }
+        return predecessor;
+    }
+
+    public void traverse(TreeNode node) {
+
+        while (node != null) {
+            if (node.left != null) {
+                TreeNode predecessor = findPredecessor(node);
+                if (predecessor.right == node) {
+                    if (pre != null) {
+                        if (pre.val > node.val) {
+                            if (first == null)
+                                first = pre;
+                            second = node;
+                        }
+                    } else {
+                        pre = node;
+                    }
+                    predecessor.right = null;
+                    pre = node;
+                    node = node.right;
+                } else {
+                    predecessor.right = node;
+                    node = node.left;
+                }
+            } else {
+                if (pre != null) {
+                    if (pre.val > node.val) {
+                        if (first == null)
+                            first = pre;
+                        second = node;
+                    }
+                }
+                pre = node;
+                node = node.right;
+            }
+        }
+    }
+
+    // This Works but it is still using stack in recursion
+    public void modifiedInorderTraversal(TreeNode node) {
+
+        if (node == null) return;
+        else {
             modifiedInorderTraversal(node.left);
             if (pre != null) {
                 if (pre.val > node.val) {
                     if (first == null) {
                         first = pre;
                     }
-                    second = node;
+                    second = node;   // -------> Note this Line it is Amazing.
+                    //  -------> It is not same as assigning second in else part.
+                    //  -------> If the swapped Nodes are adjacent then else part will fail.
+
                 }
             }
             pre = node;
             modifiedInorderTraversal(node.right);
         }
     }
-
-
-
-    // This should work but isn't working.
-    public void modifiedMorrisInorderTraversal(TreeNode node) {
-
-        TreeNode current = node;
-
-        while( current != null){
-            if(current.left == null){
-                System.out.print(current.val +" ");
-                if(current.right != null && current.val > current.right.val){
-                    if(this.first == null){
-                        this.first = current;
-                    }
-                    this.second = current.right;
-                }
-                current = current.right;
-            }
-            else{
-                TreeNode predecessor = findPredecessor(current);
-                if( predecessor.right == null){
-                    predecessor.right = current;
-                    if(current.val < current.left.val) {
-                        if (this.first == null) {
-                            this.first = current.left;
-                        }
-                        this.second = current;
-                    }
-                    current = current.left;
-                }
-                else{
-                    predecessor.right = null;
-                    System.out.print(current.val +" ");
-                    if(current.right != null && current.val > current.right.val){
-                        if(this.first == null){
-                            this.first = current;
-                        }
-                        this.second = current.right;
-                    }
-
-                    current = current.right;
-                }
-            }
-        }
-    }
 }
+
+/*
+    Look Copy For Clarification
+ */

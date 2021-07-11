@@ -3,6 +3,36 @@ package com.interviewbit.tree;
 import com.interviewbit.utils.BTreePrinter;
 import com.interviewbit.utils.TreeNode;
 
+/*
+Given a binary tree, flatten it to a linked list in-place.
+
+Example :
+Given
+
+
+         1
+        / \
+       2   5
+      / \   \
+     3   4   6
+The flattened tree should look like:
+
+   1
+    \
+     2
+      \
+       3
+        \
+         4
+          \
+           5
+            \
+             6
+Note that the left child of all nodes should be NULL.
+
+ */
+
+
 public class FlattenBinaryTreeToLinkedList {
 
     public static void main(String[] args) {
@@ -40,30 +70,34 @@ public class FlattenBinaryTreeToLinkedList {
         return a;
     }
 
-    public TreeNode solve(TreeNode node){
+    public TreeNode solve(TreeNode node) {
 
-        if( node == null) return null;
+        if (node == null) return null;
 
-        if( node.left == null && node.right == null){
+        if (node.left == null && node.right == null) {
             return node;
         }
 
         TreeNode right = node.right;
 
-        if(node.left != null){
+        if (node.left != null) {
             TreeNode llNode = solve(node.left);
             node.right = llNode;
-            while(llNode.right != null){
+            while (llNode.right != null) {
                 llNode = llNode.right;
             }
             llNode.right = right;
             node.left = null;
         }
 
-        if(right != null){
+        if (right != null) {
             solve(right);
         }
 
         return node;
     }
 }
+
+/*
+    Try to process the Right Tree First.
+ */

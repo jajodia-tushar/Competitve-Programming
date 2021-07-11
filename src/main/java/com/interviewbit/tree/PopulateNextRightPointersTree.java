@@ -24,15 +24,15 @@ public class PopulateNextRightPointersTree {
 //        }
 //    }
 
-    public void updateNextPointer(TreeLinkNode node){
+    public void updateNextPointer(TreeLinkNode node) {
         TreeLinkNode previous = null;
         TreeLinkNode current = null;
         TreeLinkNode next = null;
 
-        while(node != null){
+        while (node != null) {
             current = node.left;
             next = node.right;
-            if( previous != null)
+            if (previous != null)
                 previous.next = current;
 
             current.next = next;
@@ -46,33 +46,32 @@ public class PopulateNextRightPointersTree {
         TreeLinkNode parent = root;
         TreeLinkNode nextNode = root;
 
-        while(nextNode != null){
+        while (nextNode != null) {
 
             parent = nextNode;
             boolean set = false;
 
-            while(parent != null){
+            while (parent != null) {
 
-                if( parent.left != null){
+                if (parent.left != null) {
 
-                    if(!set){
+                    if (!set) {
                         nextNode = parent.left;
                         set = true;
                     }
 
-                    if(parent.right != null){
+                    if (parent.right != null) {
                         parent.left.next = parent.right;
-                    }
-                    else{
+                    } else {
                         TreeLinkNode possibleNextNode = parent.next;
-                        while( possibleNextNode != null){
+                        while (possibleNextNode != null) {
 
-                            if( possibleNextNode.left != null){
+                            if (possibleNextNode.left != null) {
                                 parent.left.next = possibleNextNode.left;
                                 break;
                             }
 
-                            if(possibleNextNode.right != null){
+                            if (possibleNextNode.right != null) {
                                 parent.left.next = possibleNextNode.right;
                                 break;
                             }
@@ -82,21 +81,21 @@ public class PopulateNextRightPointersTree {
                     }
                 }
 
-                if( parent.right != null){
-                    if(!set){
+                if (parent.right != null) {
+                    if (!set) {
                         nextNode = parent.right;
                         set = true;
                     }
                     TreeLinkNode possibleNextNode = parent.next;
 
-                    while( possibleNextNode != null){
+                    while (possibleNextNode != null) {
 
-                        if(possibleNextNode.left != null){
+                        if (possibleNextNode.left != null) {
                             parent.right.next = possibleNextNode.left;
                             break;
                         }
 
-                        if(possibleNextNode.right != null){
+                        if (possibleNextNode.right != null) {
                             parent.right.next = possibleNextNode.right;
                             break;
                         }
@@ -107,13 +106,48 @@ public class PopulateNextRightPointersTree {
                 parent = parent.next;
             }
 
-            if(!set){
+            if (!set) {
                 break;
             }
         }
-
-
-
-
     }
+
+    public void connectOptimized(TreeLinkNode root) {
+        TreeLinkNode main = null;
+        while (root != null) {
+            if (main == null) {
+                main = root;
+            }
+            TreeLinkNode left = root.left;
+            TreeLinkNode right = root.right;
+            TreeLinkNode next = getFirstChild(root.next);
+
+            if (left != null) {
+                left.next = right;
+                if (right == null) {
+                    left.next = next;
+                }
+            }
+
+            if (right != null) {
+                right.next = next;
+            }
+
+            if (root.next == null) {
+                root = getFirstChild(main);
+                main = null;
+            } else {
+                root = root.next;
+            }
+        }
+    }
+
+    // This Method is Amazing.
+    public TreeLinkNode getFirstChild(TreeLinkNode node) {
+        if (node == null) return null;
+        if (node.left != null) return node.left;
+        if (node.right != null) return node.right;
+        return getFirstChild(node.next);
+    }
+
 }

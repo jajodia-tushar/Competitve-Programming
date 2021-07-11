@@ -14,6 +14,7 @@ import com.interviewbit.utils.TreeNode;
 
 import java.util.Stack;
 
+
 public class BSTIterator {
 
     Stack<TreeNode> stack;
@@ -44,36 +45,37 @@ public class BSTIterator {
         root.right.right.right = new TreeNode(15);
 
         obj.solution(root);
-        while(obj.hasNext()){
+        while (obj.hasNext()) {
             System.out.println(obj.next());
         }
-
-
     }
 
     public void solution(TreeNode root) {
 
         stack = new Stack<>();
-        while(root != null){
+        while (root != null) {
             stack.push(root);
             root = root.left;
         }
     }
 
-    /** @return whether we have a next smallest number */
     public boolean hasNext() {
         return !stack.isEmpty();
     }
 
-    /** @return the next smallest number */
     public int next() {
 
         TreeNode currNode = stack.pop();
         TreeNode next = currNode.right;
-        while(next != null){
+        while (next != null) {
             this.stack.push(next);
             next = next.left;
         }
         return currNode.val;
     }
 }
+
+/*
+    Look Copy
+ */
+
