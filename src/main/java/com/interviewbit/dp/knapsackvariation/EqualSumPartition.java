@@ -28,7 +28,7 @@ public class EqualSumPartition {
         for (int[] a : dp) {
             Arrays.fill(a, -1);
         }
-        return recursive(arr, sum, dp, n);
+        return recursive(arr, sum/2, dp, n);
     }
 
     public int recursive(int[] arr, int sum, int[][] dp, int n) {
@@ -53,7 +53,7 @@ public class EqualSumPartition {
             sum += arr[i];
         }
         if (sum % 2 != 0) return 0;
-//        sum = sum / 2;
+        sum = sum / 2;
 
         boolean[][] dp = new boolean[n + 1][sum + 1];
 
@@ -76,7 +76,7 @@ public class EqualSumPartition {
                 }
             }
         }
-        ArrayUtils.printArray(dp);
+//        ArrayUtils.printArray(dp);
         return dp[n][sum] ? 1 : 0;
     }
 

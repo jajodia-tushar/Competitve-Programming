@@ -14,8 +14,8 @@ public class RegularExpressionMatchII {
     public static void main(String[] args) {
 
         RegularExpressionMatchII obj = new RegularExpressionMatchII();
-        String A = "aab";
-        String B = "c*a*b";
+        String A = "ab";
+        String B = ".*";
         int result = obj.isMatch(A, B);
         System.out.println(result);
     }
@@ -45,12 +45,12 @@ public class RegularExpressionMatchII {
                     char pattern = B.charAt(i - 1);
                     char string = A.charAt(j - 1);
 
-                    if (pattern == string || pattern == '?') {
+                    if (pattern == string || pattern == '.') {
                         dp[i][j] = dp[i - 1][j - 1];
                     } else if (pattern == '*') {
                         dp[i][j] = dp[i - 2][j];
                         char prePattern = B.charAt(i - 2);
-                        if (prePattern == '?' || prePattern == string) {
+                        if (prePattern == '.' || prePattern == string) {
                             dp[i][j] = dp[i][j] || dp[i][j - 1];
                         }
                     } else {
@@ -60,7 +60,7 @@ public class RegularExpressionMatchII {
             }
         }
 
-        ArrayUtils.printArray(dp);
+//        ArrayUtils.printArray(dp);
         return dp[p][s] ? 1 : 0;
     }
 

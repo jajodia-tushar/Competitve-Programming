@@ -67,8 +67,8 @@ public class BitonicArray {
         BitonicArray obj =new BitonicArray();
 
 
-        int[] ints = {5, 6, 7, 8, 9,10,3,2,1};
-        System.out.println(obj.solve(ints, 1));
+        int[] ints = {1,2};
+        System.out.println(obj.findPeakElement(ints));
     }
 
 
@@ -149,6 +149,29 @@ public class BitonicArray {
         else{
             return A.length - 1;
         }
+    }
+
+    public int findPeakElement(int[] nums) {
+
+        int n = nums.length;
+        int low = 0;
+        int high = n;
+
+
+        while( low < high){
+
+            int mid = low + (high - low) / 2;
+            int midValue = nums[mid];
+
+            if( mid > 0 && nums[mid - 1] >= midValue){
+                high = mid;
+            }
+            else if( mid < n - 1 && midValue <= nums[mid + 1]){
+                low = mid;
+            }
+            else return mid;
+        }
+        return low;
     }
 
 }

@@ -11,8 +11,8 @@ public class WordBreak {
     public static void main(String[] args) {
 
         WordBreak obj = new WordBreak();
-        String A = "abbabaaaabbababaaaabababaaababaabaaabbaaaabbabaabbaababababaaababbbbbbabbabbaabbaaababbaabababaabbbbaabbbaabbaabbbbbababbabbbbbaaabbabbabbabaabbbbababaaaaaaaabbbabbaaabbbababbbabbabbaabaaaababbaababbbbabaaabbbbbabbababbbbaaababbbaabbbbabaabaaababbaababaabbbaabbbaaaabaaaaaaabbabbaabbaabbaaaabaabaaaabaabbabbababbabaaaaababbbabaaabaaaaabbabaabbabbbbaaaabbbabaabbaabbbbbaaabababbaaabbbaaabaaaaaaabbaaaabababaaabbaaaaaabbaabaabbaabbbbabbaababbbbbbabbaabaabaaabaababbbabaaaabaabbbbabbbabaaabbaaaaabbaabaaaabbababaaaabababbbbaabbaabaaaaabbbbbaababbbaaaaabbaaaaaaaaaaaaaaaababaaaaabbaaabaabaaabbabaababaabbabbabbabbabaabbbaaababaaaaabbababaaababbbbaabaababbbabbaabababbaababaabbbbaaabbaaabbabbaabbababbbbbabaaaaaabaaaaababbaabbbaaaaabbbabaabaaabbabbbbababbababbbabbbbaaaaaabaabbaabababaabbbabaaaaaba";
-        String[] B =  {"a", "babbbba", "abbbba", "abb", "bbabbab", "b", "abbb", "aab", "abaaaaaa" };
+        String A = "myinterviewtrainer";
+        String[] B = {"trainer", "my", "interview"};
         int result = obj.wordBreak(A, B);
         System.out.println(result);
     }
@@ -27,7 +27,7 @@ public class WordBreak {
             for (int j = 0; j <= i; j++) {
                 String wordToCheck = A.substring(j, i + 1);
                 if (sets.contains(wordToCheck)) {
-                    if( j > 0) dp[i] += dp[j - 1];
+                    if (j > 0) dp[i] += dp[j - 1];
                     else dp[i] += 1;
                 }
             }
@@ -38,7 +38,7 @@ public class WordBreak {
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {
-            //declare another List test to refer to the wordDict
+        //declare another List test to refer to the wordDict
         List<String> test = new ArrayList<>(wordDict);
 
         //declare a boolean dp array with size = n+1
@@ -54,7 +54,7 @@ public class WordBreak {
             for (int j = 0; j < i; j++) {
 
                 // if dp[j] && test.contains(s.substring(j,i)) for all values of j in 0 to < i is true
-                if(dp[j] && test.contains(s.substring(j,i))) {
+                if (dp[j] && test.contains(s.substring(j, i))) {
                     //then set dp[i] = true and break => the substring up to i can be segmented to form space separated sequence of                    dictionary words if there exists a j < i such that 0,j can be segmented into space sep dict words and j+1 to i                    exists in the dictionary.
                     dp[i] = true;
                     break;

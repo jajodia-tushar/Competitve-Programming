@@ -59,3 +59,12 @@ class Edge {
         this.end = end;
     }
 }
+
+/*
+    This One Is very Easy.
+    But see the Time Complexity of O(N2)
+
+    But we can decrease the complexity to O(ElogV)
+
+
+ */

@@ -31,18 +31,19 @@ public class TargetSum {
 
         int n = arr.length;
         int currSum = 0;
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             currSum += arr[i];
         }
 
-
         currSum = currSum + S;
         int[][] dp = new int[n + 1][2 * currSum + 1];
-        for(int[] a : dp) Arrays.fill(a, -1);
-        return calculate(arr,0,0,S,dp,currSum);
+        for (int[] a : dp) Arrays.fill(a, -1);
+        int result = calculate(arr, 0, 0, S, dp, currSum);
+        ArrayUtils.printArray(dp);
+        return result;
     }
 
-    public int calculate(int[] nums, int i, int sum, int S, int[][] memo,int currSum) {
+    public int calculate(int[] nums, int i, int sum, int S, int[][] memo, int currSum) {
         if (i == nums.length) {
             if (sum == S)
                 return 1;
@@ -52,13 +53,12 @@ public class TargetSum {
             if (memo[i][sum + currSum] != -1) {
                 return memo[i][sum + currSum];
             }
-            int add = calculate(nums, i + 1, sum + nums[i], S, memo,currSum);
-            int subtract = calculate(nums, i + 1, sum - nums[i], S, memo,currSum);
+            int add = calculate(nums, i + 1, sum + nums[i], S, memo, currSum);
+            int subtract = calculate(nums, i + 1, sum - nums[i], S, memo, currSum);
             memo[i][sum + currSum] = add + subtract;
             return memo[i][sum + currSum];
         }
     }
-
 
 
 }

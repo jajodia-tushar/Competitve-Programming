@@ -1,4 +1,4 @@
-package com.interviewbit.dp.mcmvariatino;
+package com.interviewbit.dp.mcmvariation;
 
 import com.interviewbit.utils.ArrayUtils;
 

@@ -1,4 +1,4 @@
-package com.interviewbit.dp.mcmvariatino;
+package com.interviewbit.dp.mcmvariation;
 
 import java.util.Arrays;
 
@@ -30,6 +30,7 @@ public class ScrambleString {
         char[] bArr = B.toCharArray();
         Arrays.sort(aArr);
         Arrays.sort(bArr);
+
         if (!new String(aArr).equals(new String(bArr))) return false;
 
         for (int i = 1; i < n; i++) {
@@ -48,8 +49,10 @@ public class ScrambleString {
                 return true;
             }
         }
+
         return false;
     }
+
 
     public boolean isScrambledOptimized(String A, String B) {
 

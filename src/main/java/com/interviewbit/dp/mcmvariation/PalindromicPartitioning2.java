@@ -1,4 +1,4 @@
-package com.interviewbit.dp.mcmvariatino;
+package com.interviewbit.dp.mcmvariation;
 
 
 //Given a string A, partition A such that every substring of the partition is a palindrome.
