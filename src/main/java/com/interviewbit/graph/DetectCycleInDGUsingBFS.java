@@ -1,14 +1,12 @@
 package com.interviewbit.graph;
 
-import com.interviewbit.utils.ArrayUtils;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class DetectCycleInDAGUsingBFS {
+public class DetectCycleInDGUsingBFS {
 
     public static void main(String[] args) {
-        DetectCycleInDAGUsingBFS obj = new DetectCycleInDAGUsingBFS();
+        DetectCycleInDGUsingBFS obj = new DetectCycleInDGUsingBFS();
 
         int n = 6;
         int[][] adj = new int[][]{{5, 6}, {4, 6}, {5, 2}, {4, 1}, {2, 3}, {3, 1}, {1, 2}};

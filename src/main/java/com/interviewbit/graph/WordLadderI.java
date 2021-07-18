@@ -1,19 +1,79 @@
 package com.interviewbit.graph;
 
-import java.util.LinkedList;
+import java.util.*;
 
 public class WordLadderI {
 
     public static void main(String[] args) {
 
         WordLadderI obj = new WordLadderI();
-        String A = "hit";
-        String B = "cog";
-        String[] C = {"hot", "dot", "dog", "lot", "log"};
+        String A = "a";
+        String B = "c";
+        String[] C = {"a", "b", "c"};
 
         int result = obj.solve(A, B, C);
+
+//        String beginWord = "hit";
+//        String endWord = "cog";
+//        List<String> wordList = Arrays.asList("hot", "dot", "dog", "lot", "log", "cog");
+//        int result = obj.ladderLength(beginWord, endWord, wordList);
         System.out.println(result);
 
+    }
+
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+
+        Map<String, List<String>> maps = new HashMap<>();
+        int m = beginWord.length();
+        int n = wordList.size();
+
+        // Trying to replace Each Character with * and Creating a map of this newWord and List which
+        // Contains all these Words.
+        for(String word : wordList) {
+            for (int j = 0; j < m; j++) {
+                String newWord = word.substring(0, j) + "*" + word.substring(j + 1, m);
+                addOrPut(maps, newWord, word);
+            }
+        }
+
+        Queue<Pair<String, Integer>> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+
+        queue.add(new Pair<String, Integer>(beginWord, 1));
+        visited.add(beginWord);
+
+        while (!queue.isEmpty()) {
+
+            Pair<String, Integer> curr = queue.poll();
+            String w = curr.key;
+            int level = curr.value;
+
+            for (int i = 0; i < m; i++) {
+                String newWord = w.substring(0, i) + "*" + w.substring(i + 1, m);
+
+                if (maps.containsKey(newWord)) {
+                    for (String word : maps.get(newWord)) {
+                        if (!visited.contains(word)) {
+                            visited.add(word);
+                            queue.add(new Pair<String, Integer>(word, level + 1));
+                        }
+
+                        if (word.equals(endWord)) return level + 1;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public void addOrPut(Map<String, List<String>> maps, String key, String value) {
+        if (maps.containsKey(key)) {
+            maps.get(key).add(value);
+        } else {
+            List<String> list = new ArrayList<>();
+            list.add(value);
+            maps.put(key, list);
+        }
     }
 
     public int solve(String A, String B, String[] C) {
@@ -42,7 +102,6 @@ public class WordLadderI {
             if (isValidTransformation(A, first, 0, 0, 1)) {
                 adj[i + 1].add(0);
                 adj[0].add(i + 1);
-                ;
             }
 
             if (isValidTransformation(B, first, 0, 0, 1)) {
@@ -102,5 +161,15 @@ public class WordLadderI {
             return isValidTransformation(A, B, i + 1, j + 1, tranformation);
         else
             return isValidTransformation(A, B, i + 1, j + 1, tranformation - 1);
+    }
+
+    static class Pair<U, V> {
+        public U key;
+        public V value;
+
+        public Pair(U key, V value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 }
