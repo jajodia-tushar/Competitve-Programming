@@ -53,6 +53,15 @@ public class RegularExpressionMatchII {
                         if (prePattern == '.' || prePattern == string) {
                             dp[i][j] = dp[i][j] || dp[i][j - 1];
                         }
+
+                        // Why are we checking for dp[i][j - 1]
+                        // Try to remember the case when we were
+                        // matching mis with mis*.
+                        // mis* can be mi or miss*.
+                        // Now to match mis with miss* we see last s of mis is matching with first s for miss*
+                        // so now matching mi with mis* which can be found in dp[i][j - 1]
+                        //
+
                     } else {
                         dp[i][j] = false;
                     }
