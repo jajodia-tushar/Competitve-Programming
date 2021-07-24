@@ -75,5 +75,19 @@ public class BridgeInGraph {
             }
         }
     }
-
 }
+
+/*
+    The Intuition for this Code
+    if (lowestDiscovery[next] > discovery[currNode])
+        then edge for currNode to next is the Bridge.
+
+
+    Try to think and you will be able to understand this.
+
+    For Articulation point, we have greater than equal but in bridge we only have
+    greater than, this is because see If my child are at least able to reach
+    me from any other path this node that connect me and my child is not a bridge.
+    but i can be articulation point right ?
+    
+ */
