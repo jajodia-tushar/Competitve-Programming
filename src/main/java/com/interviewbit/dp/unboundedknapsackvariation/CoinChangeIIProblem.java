@@ -10,9 +10,9 @@ public class CoinChangeIIProblem {
 
     public static void main(String[] args) {
         CoinChangeIIProblem obj = new CoinChangeIIProblem();
-        int[] ints = ArrayUtils.asArrays(1, 2, 3, 4);
+        int[] ints = ArrayUtils.asArrays(5, 5, 2);
 
-        int result = obj.iterative(ints, 5);
+        int result = obj.iterative(ints, 7);
         System.out.println(result);
     }
 
@@ -21,11 +21,11 @@ public class CoinChangeIIProblem {
         int n = arr.length;
         int[][] dp = new int[n + 1][sum + 1];
 
-        for(int[] a : dp){
-            Arrays.fill(a,-1);
+        for (int[] a : dp) {
+            Arrays.fill(a, -1);
         }
 
-        return (int) recursive(arr,n, sum, dp);
+        return (int) recursive(arr, n, sum, dp);
 
     }
 
@@ -40,32 +40,30 @@ public class CoinChangeIIProblem {
             if (dp[i][j] == -1) {
                 dp[i][j] = Math.min(1 + recursive(arr, i, j - arr[i - 1], dp), recursive(arr, i - 1, j, dp));
             }
-        }
-        else{
-            dp[i][j] = recursive(arr,i -1 , j, dp);
+        } else {
+            dp[i][j] = recursive(arr, i - 1, j, dp);
         }
         return dp[i][j];
     }
 
 
-    public int iterative(int[] arr, int sum){
+    public int iterative(int[] arr, int sum) {
 
         int n = arr.length;
         int[][] dp = new int[n + 1][sum + 1];
+        Arrays.sort(arr);
+        for (int i = 0; i <= sum; i++)
+            dp[0][i] = Integer.MIN_VALUE + 1000;
 
-        for(int i = 0; i <= sum ; i++)
-            dp[0][i] = Integer.MAX_VALUE - 1;
-
-        for(int i = 0; i <= n; i++)
+        for (int i = 0; i <= n; i++)
             dp[i][0] = 0;
 
-        for(int i = 1; i <= n; i++){
-            for(int j = 1; j <= sum; j++){
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= sum; j++) {
 
-                if( arr[i - 1] <= j){
-                    dp[i][j] = Math.min(1 + dp[i][j -  arr[i - 1]],dp[i - 1][j]);
-                }
-                else{
+                if (arr[i - 1] <= j) {
+                    dp[i][j] = Math.max(1 + dp[i][j - arr[i - 1]], dp[i - 1][j]);
+                } else {
                     dp[i][j] = dp[i - 1][j];
                 }
             }

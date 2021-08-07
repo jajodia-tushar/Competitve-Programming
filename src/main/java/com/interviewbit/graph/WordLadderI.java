@@ -29,7 +29,7 @@ public class WordLadderI {
 
         // Trying to replace Each Character with * and Creating a map of this newWord and List which
         // Contains all these Words.
-        for(String word : wordList) {
+        for (String word : wordList) {
             for (int j = 0; j < m; j++) {
                 String newWord = word.substring(0, j) + "*" + word.substring(j + 1, m);
                 addOrPut(maps, newWord, word);
@@ -41,7 +41,9 @@ public class WordLadderI {
 
         queue.add(new Pair<String, Integer>(beginWord, 1));
         visited.add(beginWord);
-
+        Pair<String, List<String>> pair = new Pair(beginWord, new ArrayList<>() {{
+            add(beginWord);
+        }});
         while (!queue.isEmpty()) {
 
             Pair<String, Integer> curr = queue.poll();

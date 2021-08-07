@@ -6,6 +6,7 @@ package com.interviewbit.dp.mcmvariation;
 
 import java.util.Arrays;
 
+//SEE AGAIN OPTIMIZED SOLUTION USING SUFFIX PALINDROMIC CONCEPT
 public class PalindromicPartitioning2 {
 
     public static void main(String[] args) {
@@ -82,13 +83,55 @@ public class PalindromicPartitioning2 {
                     int min = Integer.MAX_VALUE;
                     for (int x = i; x < j; x++) {
                         int value = result[i][x] + result[x + 1][j] + 1;
-                        min = Math.min(value,min);
+                        min = Math.min(value, min);
                     }
                     result[i][j] = min;
                 }
             }
         }
         return result[0][n - 1];
+    }
+
+    public int solveIterativeOptimized(String str) {
+
+        int n = str.length();
+        boolean[][] possible = new boolean[n][n];
+
+        for (int i = 0; i < n; i++) {
+            possible[i][i] = true;
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            if (str.charAt(i) == str.charAt(i + 1)) {
+                possible[i][i + 1] = true;
+            }
+        }
+
+        for (int k = 3; k <= n; k++) {
+            for (int start = 0; start <= n - k; start++) {
+                int end = start + k - 1;
+
+                if (possible[start + 1][end - 1] && str.charAt(start) == str.charAt(end)) {
+                    possible[start][end] = true;
+                }
+            }
+        }
+        int[] cuts = new int[n];
+        for (int i = 0; i < n; i++) {
+            cuts[i] = i;
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (possible[0][i])
+                cuts[i] = 0;
+            else {
+                for (int p = 0; p < i; p++) {
+                    if (possible[p + 1][i])
+                        cuts[i] = Math.min(cuts[i], cuts[p] + 1);
+                }
+            }
+        }
+        return cuts[n - 1];
     }
 
 

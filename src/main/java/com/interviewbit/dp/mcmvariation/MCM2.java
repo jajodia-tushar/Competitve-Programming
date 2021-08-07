@@ -1,5 +1,7 @@
 package com.interviewbit.dp.mcmvariation;
 
+import java.util.Arrays;
+
 public class MCM2 {
 
     public static void main(String[] args) {
@@ -19,7 +21,10 @@ public class MCM2 {
         int result2 = obj.calculateMCMIterative(arr);
         System.out.println(result1);
         System.out.println(result2);
-
+        System.out.println("----------------------");
+        int[] ints = {40, 20, 30, 10, 30};
+        int result  = matrixMultiplication(5, ints);
+        System.out.println(result);
     }
 
     public int[][] getMCMPartitionArray(int[] arr) {
@@ -34,7 +39,7 @@ public class MCM2 {
             }
         }
 
-        this.calculateMCMWithKP(arr, 1, n - 1, dp,kp);
+        this.calculateMCMWithKP(arr, 1, n - 1, dp, kp);
         return kp;
 
     }
@@ -94,6 +99,31 @@ public class MCM2 {
             }
         }
         return dp[1][n - 1];
+    }
+
+    static int matrixMultiplication(int N, int arr[]) {
+        int[][] dp = new int[N][N];
+
+        for (int[] a : dp) {
+            Arrays.fill(a, 99999);
+        }
+
+        for (int i = 0; i < N; i++) {
+            dp[i][i] = 0;
+        }
+
+        for (int size = 2; size < N; size++) {
+            for (int i = 1; i < N - size; i++) {
+                int j = i + size - 1;
+                for (int k = i; k < j; k++) {
+                    int otherValue = (dp[i][k] + dp[k + 1][j] + (arr[i - 1] * arr[k] * arr[j]));
+                    dp[i][j] = Math.min(dp[i][j], otherValue);
+                    System.out.println(i + "," + j + "--> " + otherValue);
+                }
+            }
+        }
+
+        return dp[1][N - 1];
     }
 
 

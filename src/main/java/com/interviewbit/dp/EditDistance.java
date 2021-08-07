@@ -85,19 +85,23 @@ public class EditDistance {
                     int insert = dp[i - 1][j];
                     int delete = dp[i][j - 1];
                     dp[i][j] = Math.min(replace,Math.min(insert,delete)) + 1;
-
-
                 }
                 else{
                     dp[i][j] = dp[i - 1][j - 1];
                 }
-
-
-
             }
-
         }
-
         return dp[n][m];
     }
 }
+
+/*
+    See if there is a match and current I with current J.
+    then minimum number of operations required will be equal to previous
+    i - 1, j - 1.
+    But if there is no match then we have three choices
+        Replace ---> then answer will be 1 + i - 1, j - 1.
+        Insert  ---> then answer will be
+
+
+ */
