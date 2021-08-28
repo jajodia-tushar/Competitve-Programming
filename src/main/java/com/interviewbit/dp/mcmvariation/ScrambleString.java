@@ -85,8 +85,6 @@ public class ScrambleString {
             }
         }
         return scrambled[0][0][length1 - 1];
-
-
     }
 
 }

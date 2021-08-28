@@ -12,62 +12,50 @@ public class WordBreak {
 
         WordBreak obj = new WordBreak();
         String A = "myinterviewtrainer";
-        String[] B = {"trainer", "my", "interview"};
-        int result = obj.wordBreak(A, B);
+        List<String> B = List.of("trainer", "my", "interview");
+        boolean result = obj.wordBreak(A, B);
         System.out.println(result);
     }
 
-    public int wordBreak(String A, String[] B) {
+    public boolean wordBreak(String s, List<String> wordDict) {
 
-        HashSet<String> sets = new HashSet<>(Arrays.asList(B));
-        int n = A.length();
-        long[] dp = new long[n];
+        Set<String> dictSet = new HashSet<>(wordDict);
+        boolean[] isPossible = new boolean[s.length() + 1];
+        isPossible[0] = true;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j <= i; j++) {
-                String wordToCheck = A.substring(j, i + 1);
-                if (sets.contains(wordToCheck)) {
-                    if (j > 0) dp[i] += dp[j - 1];
-                    else dp[i] += 1;
+        for (int i = 1; i < s.length() + 1; i++) {
+            for (int j = 0; j < i; j++) {
+                if (isPossible[j] && dictSet.contains(s.substring(j, i))) {
+                    isPossible[i] = true;
                 }
             }
         }
-
-        ArrayUtils.printArray(dp);
-        return dp[n - 1] != 0 ? 1 : 0;
-    }
-
-    public boolean wordBreak(String s, List<String> wordDict) {
-        //declare another List test to refer to the wordDict
-        List<String> test = new ArrayList<>(wordDict);
-
-        //declare a boolean dp array with size = n+1
-        boolean dp[] = new boolean[s.length() + 1];
-
-        //initialize dp[0] = true coz empty string is included in the dictionary
-        dp[0] = true;
-
-        //iterate over from i = 1 to <=n where n is the string length
-        for (int i = 1; i <= s.length(); i++) {
-
-            //iterate over j from 0 to < i each time checking if
-            for (int j = 0; j < i; j++) {
-
-                // if dp[j] && test.contains(s.substring(j,i)) for all values of j in 0 to < i is true
-                if (dp[j] && test.contains(s.substring(j, i))) {
-                    //then set dp[i] = true and break => the substring up to i can be segmented to form space separated sequence of                    dictionary words if there exists a j < i such that 0,j can be segmented into space sep dict words and j+1 to i                    exists in the dictionary.
-                    dp[i] = true;
-                    break;
-
-                }
-            } //end of inner loop
-        }//end of outer loop
-
-        //return the last entry od boolean dp array that of dp[n] to check whether whole string of n can be segmented to form space sep dict words.
-        return dp[s.length()];
-
-        //T O(n^2) S O(n)
-
-
+        return isPossible[s.length()];
     }
 }
+
+/*
+    See it is simple if you are observe carefully.
+    You Dp[i] will store the number of different sentences possible ending at ith index.
+
+    now to find this, see you need to check for all the suffixes. If the the word represented
+    but current suffix is in the dictionary then you can add this suffix at the end of all the
+    previous possible words.
+
+    Eg if you are trying to find the dp[i] for catsanddogs
+    and currently you are at position 7th position.
+
+    i.e. you have to find dp[7].
+
+    So you have to check all the suffix i.e catsand atsand tsand sand and nd d.
+
+    now when you are checking for the suffix sand you realize that "sand" is in the dictionary so you can add
+    "sand" word in all the words that were formed previously upto cat. --> cat sand.
+
+    also when you are at "and" you realize that "and" is also in the dictionary and you can add "and" at the end of
+    every word to get the new word.
+    This way you progress.
+
+
+
+ */

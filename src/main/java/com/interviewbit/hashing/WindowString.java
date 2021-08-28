@@ -119,7 +119,7 @@ public class WindowString {
     One of the Interesting Problem.
     You can use the HashMap to track the count of the characters effectively.
 
-    Basic idea is to use two pointes,
+    Basic idea is to use two pointers,
     end and start.
     Increase end until all the characters are matched from required String in given string.
     once this is done. start increasing the start until the above condition is valid, here we are decreasing

@@ -16,7 +16,7 @@ public class ZeroOneKnapsackProblem {
         System.out.println(obj.solveIterative(W, wt, val, n));
     }
 
-    public int knapsack(int W, int wt[], int val[], int n) {
+    public int knapsack(int W, int[] wt, int[] val, int n) {
 
         int[][] dp = new int[n + 1][W + 1];
         for (int[] a : dp) {
@@ -25,7 +25,7 @@ public class ZeroOneKnapsackProblem {
         return solveRecursive(W, wt, val, dp, n);
     }
 
-    public int solveRecursive(int weight, int wt[], int value[], int[][] dp, int n) {
+    public int solveRecursive(int weight, int[] wt, int[] value, int[][] dp, int n) {
 
         if (n <= 0 || weight == 0) return 0;
         if (dp[n][weight] != -1) return dp[n][weight];

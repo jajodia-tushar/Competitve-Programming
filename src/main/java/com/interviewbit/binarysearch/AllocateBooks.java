@@ -115,7 +115,7 @@ public class AllocateBooks {
             count++;
         }
 
-        return count > B ? false : true;
+        return count <= B;
     }
 }
 /*

@@ -125,6 +125,84 @@ class LRU {
     }
 }
 
+class LRUCacheLeetCode {
+
+    Map<Integer, ListNode> maps;
+    ListNode head;
+    ListNode tail;
+    int capacity;
+
+    public LRUCacheLeetCode(int capacity) {
+        this.maps = new HashMap<>();
+        this.head = new ListNode();
+        this.tail = new ListNode();
+        this.capacity = capacity;
+        this.head.next = this.tail;
+        this.tail.prev = this.head;
+    }
+
+    public int get(int key) {
+
+        if (this.maps.containsKey(key)) {
+            ListNode node = this.maps.get(key);
+            remove(node);
+            insert(node);
+            return node.value;
+        } else {
+            return -1;
+        }
+    }
+
+    public void put(int key, int value) {
+
+        if (this.maps.containsKey(key)) {
+            ListNode node = this.maps.get(key);
+            remove(node);
+        } else if (this.maps.size() < this.capacity) {
+            ListNode node = new ListNode(key, value);
+        } else {
+            remove(this.tail.prev);
+        }
+        insert(new ListNode(key, value));
+    }
+
+    public void insert(ListNode node) {
+        this.maps.put(node.key, node);
+        ListNode headNext = this.head.next;
+        this.head.next = node;
+        node.next = headNext;
+        headNext.prev = node;
+        node.prev = this.head;
+    }
+
+    public void remove(ListNode node) {
+        this.maps.remove(node.key);
+        ListNode pre = node.prev;
+        ListNode nex = node.next;
+        pre.next = nex;
+        nex.prev = pre;
+    }
+
+
+    static class ListNode {
+        public ListNode prev;
+        public ListNode next;
+        public int key;
+        public int value;
+
+        public ListNode(int key, int value) {
+            this.key = key;
+            this.value = value;
+            this.prev = null;
+            this.next = null;
+        }
+
+        public ListNode() {
+            this(-1, -1);
+        }
+    }
+}
+
 /*
     Use Map to Store Key Value Pair.
     And Use LinkedList ( Doubly Linked List) to store all LRU.

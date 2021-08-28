@@ -71,7 +71,6 @@ public class SlidingWindowMaximum {
 
             while (!queue.isEmpty() && queue.getLast() < item) {
                 queue.removeLast();
-                ;
             }
             queue.addLast(A[j]);
             arr[i] = queue.peek();

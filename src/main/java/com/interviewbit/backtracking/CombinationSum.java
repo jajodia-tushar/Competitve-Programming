@@ -36,7 +36,7 @@ public class CombinationSum {
     public static void main(String[] args) {
 
         CombinationSum obj = new CombinationSum();
-        System.out.println(obj.combinationSum(ArrayUtils.asArrayList(15, 8, 15, 10, 19, 18, 10, 3, 11, 7, 17), 33));
+        System.out.println(obj.combinationSum(ArrayUtils.asArrayList(2,3,6,7), 7));
     }
 
     public ArrayList<ArrayList<Integer>> combinationSum(ArrayList<Integer> A, int B) {

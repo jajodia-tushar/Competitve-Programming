@@ -2,11 +2,8 @@ package com.interviewbit.graph;
 
 import com.interviewbit.utils.ArrayUtils;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
-
-// To Be Completed. BookMarked.
 public class WordLadderII {
 
     public static void main(String[] args) {
@@ -16,103 +13,94 @@ public class WordLadderII {
         String B = "cog";
         ArrayList<String> C = ArrayUtils.asArrayList("hot", "dot", "dog", "lot", "log");
 
-        ArrayList<ArrayList<String>> result = obj.findLadders(A, B, C);
+        List<List<String>> result = obj.findLadders(A, B, C);
         System.out.println(result);
 
     }
 
-    public ArrayList<ArrayList<String>>
-    findLadders(String start, String end, ArrayList<String> dict) {
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
 
-        int n = dict.size();
-        LinkedList<Integer>[] adj = new LinkedList[n + 2];
-        boolean[] visited = new boolean[n + 2];
-        int[] minValue = new int[n + 2];
-        ArrayList<Integer>[] parent = new ArrayList[n + 2];
+        Map<String,List<String>> maps = new HashMap<>();
+        Set<String> wordSets = new HashSet<>(wordList);
+        List<List<String>> result = new ArrayList<>();
 
-        for (int i = 0; i < n + 2; i++) {
-            adj[i] = new LinkedList<>();
-            visited[i] = false;
-            minValue[i] = Integer.MAX_VALUE;
-            parent[i] = new ArrayList<>();
-            parent[i].add(-1);
-        }
+        List<String> currList = new ArrayList<>();
+        currList.add(beginWord);
 
-        for (int i = 0; i < n; i++) {
-            String A = dict.get(i);
-            for (int j = i + 1; j < n; j++) {
-                String B = dict.get(j);
-                if (isValidTransformation(A, B, 0, 0, 1)) {
-                    adj[i + 1].add(j + 1);
-                    adj[j + 1].add(i + 1);
+        bfs(maps,beginWord,wordSets);
+        System.out.println(maps);
+        backTrack(result,beginWord,endWord,maps,currList);
+
+        return result;
+    }
+
+    public List<String> getNeighbours(String word,Set<String> wordSets){
+
+        int n = word.length();
+        char[] charArray = word.toCharArray();
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            char oldChar = charArray[i];
+            for(int j = 0; j < 26; j++){
+                char newChar = (char)('a' + j);
+                charArray[i] = newChar;
+                String newWord = String.valueOf(charArray);
+                if(newChar != oldChar && wordSets.contains(newWord)){
+                    result.add(newWord);
                 }
             }
-
-            if (isValidTransformation(start, A, 0, 0, 1)) {
-                adj[0].add(i + 1);
-                adj[i + 1].add(0);
-            }
-
-            if (isValidTransformation(end, A, 0, 0, 1)) {
-                adj[n + 1].add(i + 1);
-                adj[i + 1].add(n + 1);
-            }
+            charArray[i] = oldChar;
         }
+        return result;
+    }
 
-        minValue[0] = 0;
+    public void bfs(Map<String,List<String>> maps, String beginWord, Set<String> wordSets){
 
-        for (int i = 0; i < n + 2; i++) {
+        Queue<String> queue = new LinkedList<>();
+        queue.add(beginWord);
 
-            int minIndex = getMinIndexFromNotVisited(minValue, visited);
-            visited[minIndex] = true;
+        wordSets.remove(beginWord);
 
-            LinkedList<Integer> neighbours = adj[i];
-            for (int j = 0; j < neighbours.size(); j++) {
+        HashSet<String> visited = new HashSet<>();
+        visited.add(beginWord);
 
-                int u = neighbours.get(j);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            List<String> currLevel = new ArrayList<>();
 
-                if (!visited[u] && minValue[minIndex] != Integer.MAX_VALUE) {
-                    if (minValue[minIndex] + 1 == minValue[u]) {
-                        parent[u].add(minIndex);
-                    } else if (minValue[minIndex] + 1 < minValue[u]) {
-                        minValue[u] = minValue[minIndex] + 1;
-                        parent[u] = new ArrayList<>();
-                        parent[u].add(minIndex);
+            for(int i = 0; i < size; i++){
+                String currWord = queue.poll();
+                List<String> neighbours = getNeighbours(currWord,wordSets);
+                maps.put(currWord,neighbours);
+
+                for(String word : neighbours){
+                    wordSets.remove(word);
+                    if(!visited.contains(word)){
+                        queue.add(word);
+                        visited.add(word);
                     }
                 }
             }
 
-        }
-
-
-        ArrayList<String> result = new ArrayList<>();
-        ArrayList<ArrayList<String>> r = new ArrayList<>();
-        r.add(result);
-
-        return r;
-
-
-    }
-
-    public int getMinIndexFromNotVisited(int[] minValue, boolean[] visited) {
-
-        int minIndex = -1;
-        int minTillNow = Integer.MAX_VALUE;
-        for (int i = 0; i < minValue.length; i++) {
-            if (!visited[i] && minTillNow >= minValue[i]) {
-                minTillNow = minValue[i];
-                minIndex = i;
+            for(String word : currLevel){
+                wordSets.remove(word);
             }
         }
-        return minIndex;
     }
 
+    public void backTrack(List<List<String>> result, String currWord, String finalWord,Map<String,List<String>> maps, List<String> currList){
 
-    public boolean isValidTransformation(String A, String B, int i, int j, int transformation) {
-        if (transformation < 0) return false;
-        if (i == A.length() || j == B.length()) return true;
+        List<String> neighbours = maps.getOrDefault(currWord,new ArrayList<>());
+        for(String next : neighbours){
 
-        if (A.charAt(i) == B.charAt(j)) return isValidTransformation(A, B, i + 1, j + 1, transformation);
-        else return isValidTransformation(A, B, i + 1, j + 1, transformation - 1);
+            List<String> newList = new ArrayList<>(currList);
+            newList.add(next);
+            if( next.equals(finalWord)){
+                result.add(newList);
+                return;
+            }
+
+            backTrack(result,next,finalWord,maps,newList);
+        }
     }
 }

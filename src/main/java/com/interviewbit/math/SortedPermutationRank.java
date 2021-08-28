@@ -88,7 +88,7 @@ public class SortedPermutationRank {
    that we know will occur previously
    for eg we are give the string CBAD.
 
-   then the first character is C we see that there are two characters that are smaller than C --> [ 'A','B' ] (In right side)
+   then the first character is C we see that there are two characters that are smaller than C --> [ 'A','B' ] (On right side)
    Now the total permutation possible with A as first character is 3! (n - 1)!
    and so is the case with character B.
 
@@ -96,7 +96,7 @@ public class SortedPermutationRank {
    now we move forward
    We get B and there is only 1 character that is smaller than B ---> ['A'] ( on right)
    and permutation with A as starting after C is ( we are looking for permutation for CA__ as C is already attached)
-   it would be n - 2!
+   it would be (n - 2)!
    so we need at least 1 + 2 * 3! + 1 * 2!
 
    we move on this way till last.

@@ -11,8 +11,8 @@ public class WordBreakII {
     public static void main(String[] args) {
 
         WordBreakII obj = new WordBreakII();
-        String A = "bbbbaaaabaaababaabbbbbbaaabbba";
-        String[] B =  {"aabbaa", "ba", "bb", "ab", "abbbaabb", "aaaabbbaa", "bbbbaababb", "abababbbaa", "abaaaa" };
+        String A = "catsanddog";
+        String[] B =  {"cat", "cats", "and", "sand", "dog" };
 
         String[] result = obj.wordBreak(A, B);
         ArrayUtils.printArray(result);
@@ -52,3 +52,8 @@ public class WordBreakII {
         return strResult;
     }
 }
+
+/*
+    Read the Basic Word Break I and you shall be able to do this without any problem.
+
+ */

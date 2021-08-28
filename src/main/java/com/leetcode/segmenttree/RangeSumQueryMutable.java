@@ -46,7 +46,7 @@ public class RangeSumQueryMutable {
 
         int[] ints = {0,9,5,7,3};
         RangeSumQueryMutable obj = new RangeSumQueryMutable(ints);
-        int result = obj.sumRange(0, 2);
+        int result = obj.sumRange(0, 3);
         System.out.println(result);
         obj.update(1, 2);
         result = obj.sumRange(0, 2);
@@ -110,7 +110,6 @@ public class RangeSumQueryMutable {
 
     private int calculateSum(int start, int end, int segmentStart, int segmentEnd, int currentIndexInSegment) {
 
-
         if (start <= segmentStart && segmentEnd <= end)
             return this.segmentArray[currentIndexInSegment];
 
@@ -127,11 +126,8 @@ public class RangeSumQueryMutable {
 
         if (index < segmentStart || segmentEnd < index) return;
 
-
         this.segmentArray[currentSegmentIndex] += diff;
-
         if (segmentStart != segmentEnd) {
-
             int mid = getMid(segmentStart, segmentEnd);
             updateSegmentTree(segmentStart, mid, index, diff, currentSegmentIndex * 2 + 1);
             updateSegmentTree(mid + 1, segmentEnd, index, diff, currentSegmentIndex * 2 + 2);

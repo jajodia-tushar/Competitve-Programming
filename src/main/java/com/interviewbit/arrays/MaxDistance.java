@@ -84,7 +84,7 @@ public class MaxDistance {
    Answer requires the Diff of indexes so if we sort without storing
    the indexes we won't be able to find the solution.
 
-   Not since the Array is sorted the condition A[i] <= A[j] would really be
+   Now since the Array is sorted the condition A[i] <= A[j] would really be
    solved. Every number on the right are eligible.
 
     But we need max value of j - i.

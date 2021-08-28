@@ -144,7 +144,7 @@ public class WoodCuttingMadeEasy {
 }
 
 /*
-    There are a lot of category of this question. Where you intuition will say to use Greedy Approach.
+    There are a lot of category of this question. Where your intuition will say to use Greedy Approach.
     But getting optimal answer with Greedy Approach in this case will take a lot of time.
     Because you may start with max of the array and then keep decrementing 1 every time.
     So to optimize this you can take help of Binary Search.

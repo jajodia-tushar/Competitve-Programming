@@ -73,7 +73,7 @@ public class CombinationSumII {
 
 /*
     This one is classical Backtracking Problem.
-    You just have to think about how do not added already added result.
+    You just have to think about how not to add already added result.
     Now think about the same for a moment,
 
     You have already sorted the array right ?

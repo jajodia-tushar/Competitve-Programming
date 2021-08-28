@@ -24,7 +24,7 @@ public class RemoveDuplicatesFromSortedArrayII {
 
     public static void main(String[] args) {
 
-        List integers = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3);
+        List integers = Arrays.asList(1,1,1,1,2);
         RemoveDuplicatesFromSortedArrayII obj = new RemoveDuplicatesFromSortedArrayII();
         System.out.println(obj.removeDuplicates(integers));
         System.out.println(integers);

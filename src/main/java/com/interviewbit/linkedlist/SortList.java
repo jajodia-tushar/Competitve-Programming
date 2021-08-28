@@ -53,18 +53,18 @@ public class SortList {
         return result;
     }
 
-    public ListNode getMiddle(ListNode A) {
+    public ListNode getMiddle(ListNode head){
 
-        ListNode faster = A;
-        ListNode slower = A;
+        if(head == null) return null;
 
-        while (faster.next != null && faster.next.next != null) {
-            faster = faster.next.next;
-            slower = slower.next;
+        ListNode slow = head;
+        ListNode fast = head.next;
+
+        while( fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
         }
-
-        return slower;
-
+        return slow;
     }
 }
 /*

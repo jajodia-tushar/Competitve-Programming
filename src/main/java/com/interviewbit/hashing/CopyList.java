@@ -135,7 +135,7 @@ public class CopyList {
             A = ANext;
             ADash = A.next;
         }
-        ADash.random = A.random.next;
+        ADash.random = A.random == null ? null : A.random.next;
         return head.next;
     }
 }

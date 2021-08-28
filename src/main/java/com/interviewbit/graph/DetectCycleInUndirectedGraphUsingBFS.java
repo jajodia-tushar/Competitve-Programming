@@ -55,7 +55,7 @@ public class DetectCycleInUndirectedGraphUsingBFS {
                     visited[neighbour] = true;
                     queue.add(neighbour);
                     parent[neighbour] = currNode;
-                } else if (parent[neighbour] != currNode) return true;
+                } else if (parent[currNode] != neighbour) return true;
             }
         }
         return false;

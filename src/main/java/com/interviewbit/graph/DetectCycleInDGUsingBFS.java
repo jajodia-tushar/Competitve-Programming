@@ -64,7 +64,7 @@ public class DetectCycleInDGUsingBFS {
 /*
     See the Overall Idea of the this technique is easy.
     The Main Idea is see in DAG there must at least One Node
-    with in degree as 1 and one Node with out degree as 1;
+    with in degree as 0 and one Node with out degree as 0;
 
     So if we calculate the in degree for all the vertexes
     and we push in the queue the the vertexes having in degree

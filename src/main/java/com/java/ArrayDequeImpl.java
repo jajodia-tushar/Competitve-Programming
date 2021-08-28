@@ -18,5 +18,7 @@ public class ArrayDequeImpl {
         System.out.println(obj.peek());
 
 
+
+
     }
 }

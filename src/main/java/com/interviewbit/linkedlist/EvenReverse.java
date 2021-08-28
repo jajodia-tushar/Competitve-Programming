@@ -45,8 +45,8 @@ public class EvenReverse {
     public static void main(String[] args) {
 
         EvenReverse obj = new EvenReverse();
-        ListNode list = ListNode.createLinkedList(1, 2, 3, 4, 5);
-        ListNode result = obj.solve(list);
+        ListNode list = ListNode.createLinkedList(1, 2, 3, 4,5);
+        ListNode result = obj.solveOtherApproach(list);
         result.printList();
 
     }
@@ -86,6 +86,48 @@ public class EvenReverse {
 
         return head;
     }
+
+    public ListNode solveOtherApproach(ListNode A) {
+
+        if (A == null || A.next == null || A.next.next == null) return A;
+
+        ListNode odd = A;
+        ListNode even = A.next;
+        A = even.next;
+        even.next = null;
+
+        ListNode oddStart = odd;
+
+        while(A != null && A.next != null){
+
+            ListNode curr = A;
+            ListNode nxt = A.next;
+            A = nxt.next;
+
+            odd.next = curr;
+            odd = odd.next;
+            odd.next = null;
+
+            nxt.next = even;
+            even = nxt;
+        }
+
+        if( A != null){
+            odd.next = A;
+        }
+
+        odd = oddStart;
+
+        while( even != null && odd != null){
+            ListNode nxt = odd.next;
+            odd.next = even;
+            odd = even;
+            even = nxt;
+        }
+
+        return oddStart;
+
+    }
 }
 
 /*
@@ -95,4 +137,15 @@ public class EvenReverse {
     then merge the list.
     Simple
 
+    Look the Second Approach.
+    It is quite Interesting.
+    Initially we are untangling the even and odd index into different list.
+    Then we are trying to go step wise step.
+
+    1 ---> 3 ---> 5 ---> 7
+    8 ---> 6 ---> 4 ---> 2
+
+    We first do 1 ---> 8 and then odd variable is changed to point at 8 and even is changed to point at
+    3.
+    Try to debug you will understand.
  */

@@ -99,7 +99,7 @@ public class SubArrayWithBOddNumbers {
     This question looks simply on the eye but there is no optimized intuition to solve this anyway.
     It doesn't even seem like from Hashing as well.
 
-    One was is to consider all the pairs as brute force but this is certainly not going to help.
+    One way is to consider all the pairs as brute force but this is certainly not going to help.
 
     So The idea is to have a prefix array.
     prefix[]

@@ -21,27 +21,24 @@ public class LongestCommonSubString {
         for (int[] a : dp) {
             Arrays.fill(a, -1);
         }
-        return recursive(A, B, n, m, dp,0);
+        return recursive(A, B, n, m, dp);
     }
 
-    public int recursive(String A, String B, int n, int m, int[][] dp, int count ) {
+    public int recursive(String A, String B, int n, int m, int[][] dp) {
 
-        if (n == 0 || m == 0) return count;
+        if (n == 0 || m == 0) return 0;
 
         char aChar = A.charAt(n - 1);
         char bChar = B.charAt(m - 1);
 
-        if( dp[n][m] != -1)
+        if (dp[n][m] != -1)
             return dp[n][m];
 
         if (aChar == bChar) {
-                dp[n][m] = recursive(A, B, n - 1, m - 1, dp, count + 1);
+            dp[n][m] = 1 + recursive(A, B, n - 1, m - 1, dp);
+        } else {
+            dp[n][m] = Math.max(recursive(A, B, n - 1, m, dp), recursive(A, B, n, m - 1, dp));
         }
-
-        int left =  dp[n - 1][m] == - 1 ?  recursive(A, B, n - 1, m, dp,0) : dp[n - 1][m];
-        int right = dp[n][m - 1] == - 1 ?  recursive(A, B, n, m - 1, dp,0) : dp[n][m - 1];
-
-        dp[n][m] = Math.max(count, Math.max(left,right));
         return dp[n][m];
     }
 
@@ -66,7 +63,6 @@ public class LongestCommonSubString {
                 }
             }
         }
-
         return result;
     }
 }

@@ -52,9 +52,6 @@ public class CycleInDirectedGraph {
         }
 
         recursive[node] = false;
-
-        String a = "XOXXXXOOXX XOOOOXOOXX OXXOOXXXOO OXOXOOOXXO OXOOXXOOXX OXXXXXXOXO OOXXXXOXOO ";
-        String b = "XOXXXXOOXX XOOOOXOOXX OXXOOXXXOO OXXXOOOXXO OXXXXXOOXX OXXXXXXOXO OOXXXXOXOO";
         return false;
     }
 }

@@ -74,7 +74,6 @@ public class PartitionList {
                 h = h.next;
                 h.next = null;
             }
-
         }
 
         l.next = end.next;

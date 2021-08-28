@@ -4,7 +4,7 @@ public class StringOholics {
 
     public static void main(String[] args) {
         StringOholics obj = new StringOholics();
-        obj.KMPSearch("1010101010","ABABDABACDABABCABAB");
+        obj.KMPSearch("ABCABCDABCABCA","ABABDABACDABABCABAB");
 
     }
 
