@@ -75,3 +75,10 @@ public class MatchsticksToSquare {
                 dfs(l1, l2, l3, l4 + +arr[currIndex], currIndex + 1, arr, sum);
     }
 }
+
+/*
+    The Idea is Simple,
+    First See if you are able to make the sum
+    Then try to make the sum by trying out all the possiblility at each and every step.
+
+ */

@@ -98,6 +98,36 @@ public class JumpGameVI {
         }
         return result;
     }
-
-
 }
+
+/*
+    This one is Really good question.
+    But If you look and try to think little you will be able to get this easily.
+
+    See if you have to reach at ith position then you have k choices.
+    that are from i - 1, i - 2, i - 3 .... i - k Position behind right ?
+    The Above line is the base for solving this problem.
+
+    Now We need to get maximum value so definitely from all those Previous K position that I have
+    I will have to choose the maximum value.
+    So To Reach the current position I will pick the maximum value from the previous K positions.
+
+    Now O(n * k) based solution is straight forward.
+    Can you do this one in little less time.
+
+    The Idea is always select the maximum value from previous K sized window.
+    There comes the Concept of very Famous Question In rescue.
+
+    So You will have to just find the Max from the Previous K window and Add with the current
+    value and this is the maximum value you can make till now.
+
+    So Formally,
+    Create a dp[n] and dp[i] will hold the maximum value that you can get by reaching at ith Position.
+    Now You add this dp[n] value in LinkedList or PriorityQueue Depending upon the approach you are
+    trying to follow.
+
+    Your dp[i] will be equal to arr[i] + queue.poll() ( Assuming you are using PQ)
+
+    And Finally,
+    You will need to Return dp[n].
+ */

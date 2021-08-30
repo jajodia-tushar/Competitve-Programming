@@ -30,7 +30,6 @@ public class CoinsInALine {
             }
         }
 
-
         return dp[0][n - 1];
 
     }
@@ -44,6 +43,4 @@ public class CoinsInALine {
         int z = solve(i, j - 2, arr);
         return Math.max(arr[i] + Math.min(x, y), arr[j] + Math.min(y, z));
     }
-
-
 }

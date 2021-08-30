@@ -2,15 +2,25 @@ package com.leetcode.junechallenge;
 
 
 /*
-You are given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
+You are given an m x n binary matrix grid. An island is a group of 1's (representing land)
+connected 4-directionally (horizontal or vertical.) You may assume all four edges
+of the grid are surrounded by water.
 The area of an island is the number of cells with a value 1 in the island.
 Return the maximum area of an island in grid. If there is no island, return 0.
 
-Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Input: grid = [
+        [0,0,1,0,0,0,0,1,0,0,0,0,0],
+        [0,0,0,0,0,0,0,1,1,1,0,0,0],
+        [0,1,1,0,1,0,0,0,0,0,0,0,0],
+        [0,1,0,0,1,1,0,0,1,0,1,0,0],
+        [0,1,0,0,1,1,0,0,1,1,1,0,0],
+        [0,0,0,0,0,0,0,0,0,0,1,0,0],
+        [0,0,0,0,0,0,0,1,1,1,0,0,0],
+        [0,0,0,0,0,0,0,1,1,0,0,0,0]]
 Output: 6
 Explanation: The answer is not 11, because the island must be connected 4-directionally.
-Example 2:
 
+Example 2:
 Input: grid = [[0,0,0,0,0,0,0,0]]
 Output: 0
 
@@ -65,7 +75,11 @@ public class MaxAreaOfIsland {
 
 /*
 Notes.
-This is the classical Question of the Connected Components.
-Just use DFS to traverse and 2 for loop to traverse not visited island even after previous dfs.
-The max area can be tracked by the global area variable
+    This is the classical Question of the Connected Components.
+    Just use DFS to traverse and 2 for loop to traverse not visited island even after previous dfs.
+    The max area can be tracked by the global area variable
+
+    If You do not want to use the visited array you can change the value of 1 to something other
+    such as 2.
+    So that you don't start the new dfs again in a same component.
  */
