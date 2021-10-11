@@ -62,7 +62,7 @@ public class CoinChangeIIProblem {
             for (int j = 1; j <= sum; j++) {
 
                 if (arr[i - 1] <= j) {
-                    dp[i][j] = Math.max(1 + dp[i][j - arr[i - 1]], dp[i - 1][j]);
+                    dp[i][j] = Math.min(1 + dp[i][j - arr[i - 1]], dp[i - 1][j]);
                 } else {
                     dp[i][j] = dp[i - 1][j];
                 }

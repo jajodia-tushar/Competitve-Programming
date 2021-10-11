@@ -140,7 +140,45 @@ public class NextPermutation {
         You will understand.
         Good Question
 
+        // EDIT - 2
 
+        See the i you find is a special point.
+        The elements from i + 1 to n are in
+        Non-Increasing/Decreasing Order. [ That's why you have found i to be here if there was any mismatch
+                                            than the i would have been there] --- Making Sense.
 
+        Now you will need to find the maxJ in i + 1 to n such that it is still greater than
+        ith item and lowest among all.
 
+        Instead of searching through the completer i + 1 to n you can start from end and find the first
+        such occurrence.
+
+        Now you will swap i with maxJ.
+
+        You can again be sure that all the elements in range i + 1 to n are in non-increasing order.
+
+        Example.
+        1 5 8 4 7 6 5 3 1
+        You get i as 3 and maxJ as 6
+        See the items in the range 4 to 8 are in Decreasing Order.
+        After swapping it will look like
+        1 5 8 5 7 6 4 3 1
+        Still the items from range 4 to 8 are in Decreasing Order
+
+        Now instead of sorting the Array from i + 1 you can reverse the elements from i + 1 to n.
+        This will further decrease the complexity to n from nLogN
+
+        Things to take care.
+        There could be multiple 5 in the above example
+
+        1 5 8 4 7 6 5 5 5 5 5 3 1
+
+        Now here you will always need to select maxJ as the right most element
+        if you select any other 5 as maxJ then see
+
+        1 5 8 5 7 6 4 5 5 5 5 3 1
+
+        See the items are not in Decreasing order from index i + 1 --> 4.
+
+        So You start searching maxJ from end and get the first Greater number than ith Element.
  */

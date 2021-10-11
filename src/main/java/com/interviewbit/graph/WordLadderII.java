@@ -28,7 +28,7 @@ public class WordLadderII {
         currList.add(beginWord);
 
         bfs(maps,beginWord,wordSets);
-        System.out.println(maps);
+//        System.out.println(maps);
         backTrack(result,beginWord,endWord,maps,currList);
 
         return result;
@@ -74,7 +74,7 @@ public class WordLadderII {
                 maps.put(currWord,neighbours);
 
                 for(String word : neighbours){
-                    wordSets.remove(word);
+                    currLevel.add(word);
                     if(!visited.contains(word)){
                         queue.add(word);
                         visited.add(word);

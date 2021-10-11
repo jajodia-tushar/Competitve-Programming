@@ -56,7 +56,7 @@ public class SlidingWindowMaximum {
     }
 }
 /*
-    The Idea in this question is to use Max Heap of in[] and actually there is just two items in
+    The Idea in this question is to use Max Heap of int[] and actually there is just two items in
     the int[] it has item and index of that item, so we keep adding the item,
     if we remove the last item every-time we add new item it will give TLE.
     So what we can do is we keep checking the index of the peek element if

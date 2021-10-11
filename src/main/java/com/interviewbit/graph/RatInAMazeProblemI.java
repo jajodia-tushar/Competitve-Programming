@@ -8,39 +8,39 @@ Note: In a path, no cell can be visited more than one time.
 
 Example 1:
 
-Input:
-N = 4
-m[][] = {{1, 0, 0, 0},
-         {1, 1, 0, 1},
-         {1, 1, 0, 0},
-         {0, 1, 1, 1}}
-Output:
-DDRDRR DRDDRR
-Explanation:
-The rat can reach the destination at
-(3, 3) from (0, 0) by two paths - DRDDRR
-and DDRDRR, when printed in sorted order
-we get DDRDRR DRDDRR.
-Example 2:
-Input:
-N = 2
-m[][] = {{1, 0},
-         {1, 0}}
-Output:
--1
-Explanation:
-No path exists and destination cell is
-blocked.
-Your Task:
-You don't need to read input or print anything. Complete the function printPath() which takes N and 2D array m[ ][ ] as input parameters and returns the list of paths in lexicographically increasing order.
-Note: In case of no path, return an empty list. The driver will output "-1" automatically.
+    Input:
+    N = 4
+    m[][] = {{1, 0, 0, 0},
+             {1, 1, 0, 1},
+             {1, 1, 0, 0},
+             {0, 1, 1, 1}}
+    Output:
+    DDRDRR DRDDRR
+    Explanation:
+    The rat can reach the destination at
+    (3, 3) from (0, 0) by two paths - DRDDRR
+    and DDRDRR, when printed in sorted order
+    we get DDRDRR DRDDRR.
+    Example 2:
+    Input:
+    N = 2
+    m[][] = {{1, 0},
+             {1, 0}}
+    Output:
+    -1
+    Explanation:
+    No path exists and destination cell is
+    blocked.
+    Your Task:
+    You don't need to read input or print anything. Complete the function printPath() which takes N and 2D array m[ ][ ] as input parameters and returns the list of paths in lexicographically increasing order.
+    Note: In case of no path, return an empty list. The driver will output "-1" automatically.
 
-Expected Time Complexity: O((N2)4).
-Expected Auxiliary Space: O(L * X), L = length of the path, X = number of paths.
+    Expected Time Complexity: O((N2)4).
+    Expected Auxiliary Space: O(L * X), L = length of the path, X = number of paths.
 
-Constraints:
-2 ≤ N ≤ 5
-0 ≤ m[i][j] ≤ 1
+    Constraints:
+    2 ≤ N ≤ 5
+    0 ≤ m[i][j] ≤ 1
  */
 public class RatInAMazeProblemI {
 

@@ -89,7 +89,6 @@ public class DijkstraSAlgorithm {
                 }
             }
         }
-
         return result;
     }
 

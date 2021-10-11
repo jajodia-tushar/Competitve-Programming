@@ -27,36 +27,35 @@ public class TargetSum {
         System.out.println(result);
     }
 
-    public int findTargetSumWays(int[] arr, int S) {
+    public int findTargetSumWays(int[] arr, int target) {
 
         int n = arr.length;
-        int currSum = 0;
+        int sum = 0;
         for (int i = 0; i < n; i++) {
-            currSum += arr[i];
+            sum += arr[i];
         }
 
-        currSum = currSum + S;
-        int[][] dp = new int[n + 1][2 * currSum + 1];
+        int[][] dp = new int[n + 1][2 * sum + 1];
         for (int[] a : dp) Arrays.fill(a, -1);
-        int result = calculate(arr, 0, 0, S, dp, currSum);
+        int result = calculate(arr, 0, 0, target, dp, sum);
         ArrayUtils.printArray(dp);
         return result;
     }
 
-    public int calculate(int[] nums, int i, int sum, int S, int[][] memo, int currSum) {
-        if (i == nums.length) {
-            if (sum == S)
+    public int calculate(int[] nums, int index, int currSum, int target, int[][] memo, int total) {
+        if (index == nums.length) {
+            if (currSum == target)
                 return 1;
             else
                 return 0;
         } else {
-            if (memo[i][sum + currSum] != -1) {
-                return memo[i][sum + currSum];
+            if (memo[index][currSum + total] != -1) {
+                return memo[index][currSum + total];
             }
-            int add = calculate(nums, i + 1, sum + nums[i], S, memo, currSum);
-            int subtract = calculate(nums, i + 1, sum - nums[i], S, memo, currSum);
-            memo[i][sum + currSum] = add + subtract;
-            return memo[i][sum + currSum];
+            int add = calculate(nums, index + 1, currSum + nums[index], target, memo, total);
+            int subtract = calculate(nums, index + 1, currSum - nums[index], target, memo, total);
+            memo[index][currSum + total] = add + subtract;
+            return memo[index][currSum + total];
         }
     }
 

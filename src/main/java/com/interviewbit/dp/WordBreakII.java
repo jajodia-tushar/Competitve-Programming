@@ -2,9 +2,7 @@ package com.interviewbit.dp;
 
 import com.interviewbit.utils.ArrayUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 public class WordBreakII {
 
@@ -12,44 +10,44 @@ public class WordBreakII {
 
         WordBreakII obj = new WordBreakII();
         String A = "catsanddog";
-        String[] B =  {"cat", "cats", "and", "sand", "dog" };
+        List<String> B = Arrays.asList("cat", "cats", "and", "sand", "dog");
 
-        String[] result = obj.wordBreak(A, B);
-        ArrayUtils.printArray(result);
+        List<String> result = obj.wordBreak(A, B);
+        System.out.println(result);
     }
 
-    public String[] wordBreak(String A, String[] B) {
+    public List<String> wordBreak(String s, List<String> wordDict) {
 
-        HashSet<String> result = new HashSet<>();
-        HashSet<String> sets = new HashSet<>(Arrays.asList(B));
+        int n = s.length();
+        List<String>[] dp = new ArrayList[n + 1];
 
-        int n = A.length();
-        for (int i = 0; i < n; i++) {
+        dp[0] = new ArrayList<>();
+        Set<String> dicSets = new HashSet<>(wordDict);
+
+        for (int i = 1; i <= n; i++) {
             for (int j = 0; j < i; j++) {
-                String wordToCheck = A.substring(j, i + 1);
-                if (sets.contains(wordToCheck)) {
-                    ArrayList<String> temp = new ArrayList<>();
-                    if( result.size() == 0){
-                        result.add(wordToCheck);
-                    }
-                    else{
-                        for (String str : result) {
-                            temp.add(str + wordToCheck);
+                String subString = s.substring(j, i);
+                if (dicSets.contains(subString)) {
+                    List<String> preMatch = dp[j];
+
+                    if (preMatch != null) {
+                        if (dp[i] == null) {
+                            dp[i] = new ArrayList<>();
                         }
-                        result.addAll(temp);
+
+                        if (j == 0)
+                            dp[i].add(subString);
+                        else {
+                            for (String str : preMatch) {
+                                String newString = str + " " + subString;
+                                dp[i].add(newString);
+                            }
+                        }
                     }
                 }
             }
         }
-
-        String[] strResult = new String[result.size()];
-        int i = 0;
-
-        for (String str : result) {
-            strResult[i++] = str;
-        }
-
-        return strResult;
+        return dp[n] == null ? new ArrayList<>() : dp[n];
     }
 }
 
